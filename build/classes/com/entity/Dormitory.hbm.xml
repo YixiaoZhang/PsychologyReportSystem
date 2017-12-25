@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.entity.Dormitory" table="dormitory">
+		<id name="id" type="java.lang.Integer">
+			<column name="dormitoryId"></column>
+			<generator class="increment" />
+		</id>
+		<property name="name" column="dormitoryName" />
+		<property name="leaderId" column="dormitoryLId" />
+		<property name="member1Id" column="dormitoryM1Id" />
+		<property name="member2Id" column="dormitoryM2Id" />
+		<property name="member3Id" column="dormitoryM3Id" />
+		<property name="member4Id" column="dormitoryM4Id" />
+		<property name="member5Id" column="dormitoryM5Id" />
+		<property name="gradeId" column="gradeId" />
+	</class>
+</hibernate-mapping>    

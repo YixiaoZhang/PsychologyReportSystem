@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+
+<hibernate-mapping>        
+    <class name="com.entity.Record" table="record">               
+        <id name="id" type="java.lang.Integer">    
+           <column name="recordId"></column>
+			<generator class="increment" />
+		</id> 
+        <property name="reportId" column="reportId" />    
+        <property name="recordedId" column="recordRecordedId"/>    
+        <property name="fillId" column="recordFillId"/>    
+        <property name="content" column="recordContent"/> 
+        <property name="time" column="recordTime"/> 
+        <property name="question1" column="recordQuestion1"/> 
+        <property name="question2" column="recordQuestion2"/>
+        <property name="question3" column="recordQuestion3"/>
+        <property name="question4" column="recordQuestion4"/>
+        <property name="question5" column="recordQuestion5"/>
+        <property name="question6" column="recordQuestion6"/>
+        <property name="question7" column="recordQuestion7"/>
+        <property name="question8" column="recordQuestion8"/>
+        <property name="question9" column="recordQuestion9"/>
+    </class>           
+</hibernate-mapping>    
