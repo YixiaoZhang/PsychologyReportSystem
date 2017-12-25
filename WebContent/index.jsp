@@ -21,7 +21,7 @@
 	<article data-am-widget="paragraph"
 		class="am-paragraph am-paragraph-default"
 		data-am-paragraph="{ tableScrollable: true, pureview: true }">
-	<br>你好，XXX！<br>欢迎使用心理月报系统！
+	<br>你好，XXX1111！<br>欢迎使用心理月报系统！
 </article>
 
 
