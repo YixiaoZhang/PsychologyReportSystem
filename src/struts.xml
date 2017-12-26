@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	
+
+	<package name="default" namespace="/" extends="struts-default">
+
+		<!-- 响应提交的注册信息 -->
+		<action name="CheckLogin" class="com.action.mobile.center.CheckLogin">
+			<result>welcome.jsp</result>
+			<result name="false">error.jsp</result>
+		</action>		
+
+	</package>
+
+</struts>
