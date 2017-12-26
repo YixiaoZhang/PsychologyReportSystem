@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Record;
 /**
@@ -17,12 +18,20 @@ import com.entity.Record;
  * @date 2017/12/11
  */
 public class RecordDao {
-	static Configuration cfg = new Configuration().configure();
-	static SessionFactory sf = cfg.buildSessionFactory();
+	@Autowired
+	SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	/** 新增记录 */ 
 	public boolean addRecord(Record record) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -44,7 +53,7 @@ public class RecordDao {
 	
 	/** 删除记录 */ 
 	public boolean deleteRecord(String id) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -67,7 +76,7 @@ public class RecordDao {
 	/** 查询一个记录（按id） */ 
 	public Record queryRecord(String id) {
 		Record record = null;
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Record where id=?";
 		Query query = s.createQuery(hql);
 		query.setString(0, id);

@@ -41,10 +41,10 @@
 	<div class="am-g">
 		<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
 			<hr>
-			<form method="post" class="am-form">
-				<label for="email">学号</label> <input type="text" name="" id="id"
+			<form action="CheckLogin" method="post" class="am-form">
+				<label for="email">学号</label> <input type="text" name="id" id="id"
 					value=""> <br> <label for="password">密码</label> <input
-					type="password" name="" id="password" value=""> <br> <br />
+					type="password" name="password" id="password" value=""> <br> <br />
 				<div class="am-cf">
 					<input type="submit" name="" value="登 录"
 						class="am-btn am-btn-primary am-btn-sm am-fl">

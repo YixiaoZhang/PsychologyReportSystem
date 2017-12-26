@@ -10,7 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.MessageGroup;
 /**
@@ -20,12 +20,20 @@ import com.entity.MessageGroup;
  * @date 2017/12/11
  */
 public class MessageGroupDao {
-	static Configuration cfg = new Configuration().configure();
-	static SessionFactory sf = cfg.buildSessionFactory();
+	@Autowired
+	SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	/** 新增消息组 */ 
 	public boolean addMessageGroup(MessageGroup messageGroup) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -46,7 +54,7 @@ public class MessageGroupDao {
 	
 	/** 修改消息组 */ 
 	public boolean updateMessageGroup(MessageGroup messageGroup) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -69,7 +77,7 @@ public class MessageGroupDao {
 	/** 查询一个消息组（按id） */ 
 	public MessageGroup queryMessageGroup(int id) {
 		MessageGroup messageGroup = null;
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from MessageGroup where id=?";
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
@@ -82,7 +90,7 @@ public class MessageGroupDao {
 	
 	/** 查询全部消息组 */ 
 	public List<MessageGroup> queryMessageGroup() {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from MessageGroup";
 		Query query = s.createQuery(hql);
 		List<MessageGroup> result = query.list();

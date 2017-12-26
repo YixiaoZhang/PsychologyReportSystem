@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Report;
 /**
@@ -17,11 +18,20 @@ import com.entity.Report;
  * @date 2017/12/11
  */
 public class ReportDao {
-	static Configuration cfg = new Configuration().configure();
-	static SessionFactory sf = cfg.buildSessionFactory();
+	@Autowired
+	SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 	/** 新增月报表 */ 
 	public boolean addReport(Report report) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -42,7 +52,7 @@ public class ReportDao {
 	
 	/** 修改月报表 */ 
 	public boolean updateReport(Report report) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -65,7 +75,7 @@ public class ReportDao {
 	/** 查询一个月报表（按id） */ 
 	public Report queryReport(int id) {
 		Report report = null;
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Report where id=?";
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
@@ -78,7 +88,7 @@ public class ReportDao {
 	
 	/** 查询全部月报表 */ 
 	public List<Report> queryReport() {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Report";
 		Query query = s.createQuery(hql);
 		List<Report> result = query.list();

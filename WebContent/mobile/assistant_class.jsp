@@ -12,8 +12,7 @@
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <link rel="icon" type="image/png" href="assets/i/favicon.png">
-<link rel="stylesheet" href="assets/css/amazeui.min.css">
-<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/amazeui.min.css"><link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>

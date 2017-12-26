@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Classes;
 import com.entity.Dormitory;
@@ -19,12 +20,20 @@ import com.entity.Dormitory;
  * @date 2017/12/11
  */
 public class DormitoryDao {
-	static Configuration cfg = new Configuration().configure();
-	static SessionFactory sf = cfg.buildSessionFactory();
+	@Autowired
+	SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	/** 新增寝室 */ 
 	public boolean addDormitory(Dormitory dormitory) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -45,7 +54,7 @@ public class DormitoryDao {
 	
 	/** 修改寝室 */ 
 	public boolean updateDormitory(Dormitory dormitory) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -66,7 +75,7 @@ public class DormitoryDao {
 	
 	/** 删除寝室 */ 
 	public boolean deleteDormitory(int id) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -89,7 +98,7 @@ public class DormitoryDao {
 	/** 查询一个寝室（按id） */ 
 	public Dormitory queryDormitory(int id) {
 		Dormitory dormitory = null;
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Dormitory where id=?";
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
@@ -102,7 +111,7 @@ public class DormitoryDao {
 	
 	/** 查询全部寝室 */ 
 	public List<Dormitory> queryDormitory() {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Dormitory";
 		Query query = s.createQuery(hql);
 		List<Dormitory> result = query.list();

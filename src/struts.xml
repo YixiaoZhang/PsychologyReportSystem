@@ -17,7 +17,7 @@
 		<!-- 响应提交的注册信息 -->
 		<action name="CheckLogin" class="com.action.mobile.center.CheckLogin">
 			<result>welcome.jsp</result>
-			<result name="false">error.jsp</result>
+			<result name="false">login.jsp</result>
 		</action>		
 
 	</package>

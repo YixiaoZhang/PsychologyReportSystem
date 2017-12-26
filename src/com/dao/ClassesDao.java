@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Classes;
 import com.entity.Instructor;
@@ -19,12 +20,20 @@ import com.entity.Instructor;
  * @date 2017/12/11
  */
 public class ClassesDao {
-	static Configuration cfg = new Configuration().configure();
-	static SessionFactory sf = cfg.buildSessionFactory();
+	@Autowired
+	SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	/** 新增班级 */ 
 	public boolean addClasses(Classes classes) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -45,7 +54,7 @@ public class ClassesDao {
 	
 	/** 修改班级 */ 
 	public boolean updateClasses(Classes classes) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -66,7 +75,7 @@ public class ClassesDao {
 	
 	/** 删除班级 */ 
 	public boolean deleteClasses(int id) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -89,7 +98,7 @@ public class ClassesDao {
 	/** 查询一个班级（按id） */ 
 	public Classes queryClasses(int id) {
 		Classes classes = null;
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Classes where id=?";
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
@@ -102,7 +111,7 @@ public class ClassesDao {
 	
 	/** 查询全部班级 */ 
 	public List<Classes> queryClasses() {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Classes";
 		Query query = s.createQuery(hql);
 		List<Classes> result = query.list();

@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Dormitory;
 import com.entity.Grade;
@@ -19,12 +20,20 @@ import com.entity.Grade;
  * @date 2017/12/11
  */
 public class GradeDao {
-	static Configuration cfg = new Configuration().configure();
-	static SessionFactory sf = cfg.buildSessionFactory();
+	@Autowired
+	SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	/** 新增年级 */ 
 	public boolean addGrade(Grade grade) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -45,7 +54,7 @@ public class GradeDao {
 	
 	/** 修改年级 */ 
 	public boolean updateGrade(Grade grade) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -66,7 +75,7 @@ public class GradeDao {
 	
 	/** 删除年级 */ 
 	public boolean deleteGrade(int id) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -89,7 +98,7 @@ public class GradeDao {
 	/** 查询一个年级（按id） */ 
 	public Grade queryGrade(int id) {
 		Grade grade = null;
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Grade where id=?";
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
@@ -102,7 +111,7 @@ public class GradeDao {
 	
 	/** 查询全部年级 */ 
 	public List<Grade> queryGrade() {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Grade";
 		Query query = s.createQuery(hql);
 		List<Grade> result = query.list();

@@ -62,11 +62,15 @@
 	<!--使用基于注解方式配置事务 -->
 	<tx:annotation-driven transaction-manager="txManager" />
 	
-	<!-- 
 	 <bean id="studentDao" class="com.dao.StudentDao"/>
-	 <bean id="student" class="com.entity.Student"/>
-	  -->
-
+	 <bean id="reportDao" class="com.dao.ReportDao"/>
+	 <bean id="recordDao" class="com.dao.RecordDao"/>
+	 <bean id="messageGroupDao" class="com.dao.MessageGroupDao"/>
+	 <bean id="instructorDao" class="com.dao.InstructorDao"/>
+	 <bean id="gradeDao" class="com.dao.GradeDao"/>
+	 <bean id="dormitoryDao" class="com.dao.DormitoryDao"/>
+	 <bean id="classesDao" class="com.dao.ClassesDao"/>
+	 <bean id="administratorDao" class="com.dao.AdministratorDao"/>
 	 
 
 </beans>

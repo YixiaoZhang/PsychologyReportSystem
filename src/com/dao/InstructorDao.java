@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Instructor;
 
@@ -19,12 +20,20 @@ import com.entity.Instructor;
  * @date 2017/12/11
  */
 public class InstructorDao {
-	static Configuration cfg = new Configuration().configure();
-	static SessionFactory sf = cfg.buildSessionFactory();
+	@Autowired
+	SessionFactory sessionFactory;
 
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 	/** 新增辅导员 */
 	public boolean addInstructor(Instructor instructor) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -45,7 +54,7 @@ public class InstructorDao {
 
 	/** 修改辅导员 */
 	public boolean updateInstructor(Instructor instructor) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -66,7 +75,7 @@ public class InstructorDao {
 
 	/** 删除辅导员 */
 	public boolean deleteInstructor(int id) {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = s.beginTransaction();
@@ -89,7 +98,7 @@ public class InstructorDao {
 	/** 查询一个辅导员（按id） */
 	public Instructor queryInstructor(int id) {
 		Instructor instructor = null;
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Instructor where id=?";
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
@@ -102,7 +111,7 @@ public class InstructorDao {
 
 	/** 查询全部辅导员 */
 	public List<Instructor> queryInstructor() {
-		Session s = sf.openSession();
+		Session s = sessionFactory.openSession();
 		String hql = "from Instructor";
 		Query query = s.createQuery(hql);
 		List<Instructor> result = query.list();
