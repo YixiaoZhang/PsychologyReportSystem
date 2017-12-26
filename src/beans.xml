@@ -62,10 +62,10 @@
 	<!--使用基于注解方式配置事务 -->
 	<tx:annotation-driven transaction-manager="txManager" />
 	
-	
+	<!-- 
 	 <bean id="studentDao" class="com.dao.StudentDao"/>
 	 <bean id="student" class="com.entity.Student"/>
-	 
+	  -->
 
 	 
 
