@@ -40,8 +40,8 @@
 			</ul></li>
 		<li class="am-parent"><a href="#c3" class="">心理委员</a>
 			<ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
-				<li class=""><a href="##" class="">寝室长月报</a></li>
-				<li class=""><a href="##" class="">本班情况</a></li>
+				<li class=""><a href="assistant_dormitory.jsp" class="">寝室长月报</a></li>
+				<li class=""><a href="assistant_class.jsp" class="">本班情况</a></li>
 			</ul></li>
 		<li class="am-parent"><a href="##" class="">个人中心</a>
 			<ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
