@@ -21,7 +21,7 @@
 	<article data-am-widget="paragraph"
 		class="am-paragraph am-paragraph-default"
 		data-am-paragraph="{ tableScrollable: true, pureview: true }">
-	<br>你好，XXX！<br>欢迎使用心理月报系统！
+	<br>你好，${session.studentName}！<br>欢迎使用心理月报系统！
 </article>
 
 
@@ -50,10 +50,6 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">2</span>&nbsp;&nbsp;份<br>
 	<button type="button" class="am-btn am-btn-primary am-fr">查看详情</button>
 </article>
-
-
-
-
 
 
 	<script src="assets/js/jquery.min.js"></script>

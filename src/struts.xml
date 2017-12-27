@@ -16,9 +16,12 @@
 
 		<!-- 响应提交的注册信息 -->
 		<action name="CheckLogin" class="com.action.mobile.center.CheckLogin">
-			<result>welcome.jsp</result>
+			<result type="chain">CenterIndex</result>
 			<result name="false">login.jsp</result>
-		</action>		
+		</action>
+		<action name="CenterIndex" class="com.action.mobile.center.CenterIndex">
+			<result>index.jsp</result>
+		</action>
 
 	</package>
 
