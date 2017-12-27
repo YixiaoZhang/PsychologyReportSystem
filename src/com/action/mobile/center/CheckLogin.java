@@ -25,9 +25,13 @@ public class CheckLogin extends ActionSupport {
 		if (studentDao.checkStudent(id, password)) {
 			ApplicationContext act = new ClassPathXmlApplicationContext("beans.xml");
 			Student stu = studentDao.queryStudent(id);
+			boolean isDor = studentDao.isDormitory(id);
+			boolean isAss = studentDao.isAssistant(id);
 			Map session = ActionContext.getContext().getSession();
 			session.put("studentId", stu.getId());
 			session.put("studentName", stu.getName());
+			session.put("isAss", isAss);
+			session.put("isDor", isDor);
 			return "success";
 		}
 		ActionContext context = ActionContext.getContext();

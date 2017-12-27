@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<%@taglib prefix="s" uri="/struts-tags" %>
 <title>心理月报系统</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -24,32 +25,35 @@
 	<br>你好，${session.studentName}！<br>欢迎使用心理月报系统！
 </article>
 
-
+<s:if test="#dor0!='100'">
 	<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-		<h2 class="am-titlebar-title ">心理月报</h2>
+		<h2 class="am-titlebar-title ">寝室长工作</h2>
 	</div>
-
 	<article data-am-widget="paragraph"
 		class="am-paragraph am-paragraph-default"
 		data-am-paragraph="{ tableScrollable: true, pureview: true }">
-	当前正在收集&nbsp;&nbsp;<span class="am-badge am-badge-primary">3</span>&nbsp;&nbsp;月心理月报<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;您已完成&nbsp;&nbsp;<span class="am-badge am-badge-success">2</span>&nbsp;&nbsp;份<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">2</span>&nbsp;&nbsp;份<br>
+	当前正在收集&nbsp;&nbsp;<span class="am-badge am-badge-primary">${dor0}</span>&nbsp;&nbsp;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;您已完成&nbsp;&nbsp;<span class="am-badge am-badge-success">${dor1}</span>&nbsp;&nbsp;份<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">${dor2}</span>&nbsp;&nbsp;份<br>
 	<button type="button" class="am-btn am-btn-primary am-fr">现在填写</button>
 </article>
+</s:if>
+
+
 <br>
+<s:if test="#class0!='100'">
 <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
 		<h2 class="am-titlebar-title ">心理委员</h2>
 	</div>
-
 	<article data-am-widget="paragraph"
 		class="am-paragraph am-paragraph-default"
 		data-am-paragraph="{ tableScrollable: true, pureview: true }">
-	所在班级&nbsp;&nbsp;<span class="am-badge am-badge-primary">软工1501</span>&nbsp;&nbsp;班<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班已完成填写&nbsp;&nbsp;<span class="am-badge am-badge-success">2</span>&nbsp;&nbsp;份<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">2</span>&nbsp;&nbsp;份<br>
+	所在班级&nbsp;&nbsp;<span class="am-badge am-badge-primary">${class0}</span>&nbsp;&nbsp;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班已完成填写&nbsp;&nbsp;<span class="am-badge am-badge-success">${class1}</span>&nbsp;&nbsp;份<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">${class2}</span>&nbsp;&nbsp;份<br>
 	<button type="button" class="am-btn am-btn-primary am-fr">查看详情</button>
 </article>
+</s:if>
 
 
 	<script src="assets/js/jquery.min.js"></script>

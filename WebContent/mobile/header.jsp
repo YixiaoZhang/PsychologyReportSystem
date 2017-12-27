@@ -4,8 +4,7 @@
 <header data-am-widget="header"
           class="am-header am-header-default">
       <div class="am-header-left am-header-nav">
-          <a href="index.jsp" class="">
-
+          <a href="CenterIndex" class="">
                 <i class="am-header-icon am-icon-home"></i>
           </a>
       </div>
@@ -32,7 +31,7 @@
 	</a>
 
 	<ul class="am-menu-nav am-avg-sm-4 am-collapse">
-		<li class=""><a href="report_all.jsp" class="">心理月报</a></li>
+		<li class=""><a href="report_all.jsp" class="">寝室长</a></li>
 		<li class="am-parent"><a href="##" class="">消息中心</a>
 			<ul class="am-menu-sub am-collapse  am-avg-sm-3 ">
 				<li class=""><a href="##" class="">新建对话</a></li>

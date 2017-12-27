@@ -11,6 +11,7 @@ public class Report implements java.io.Serializable {
 	private int id;
 	private String name;
 	private int gradeId;
+	private int isOpen;
 	private Set<Record> record;
 	public Report() {
 		super();
@@ -21,11 +22,13 @@ public class Report implements java.io.Serializable {
 		this.id = id;
 		this.name = name;
 		this.gradeId = gradeId;
+		this.isOpen = isOpen;
 	}
-	public Report(String name, int gradeId) {
+	public Report(String name, int gradeId,int isOpen) {
 		super();
 		this.name = name;
 		this.gradeId = gradeId;
+		this.isOpen = isOpen;
 	}
 	public int getId() {
 		return id;
@@ -44,6 +47,12 @@ public class Report implements java.io.Serializable {
 	}
 	public void setGradeId(int gradeId) {
 		this.gradeId = gradeId;
+	}
+	public int getIsOpen() {
+		return isOpen;
+	}
+	public void setIsOpen(int isOpen) {
+		this.isOpen = isOpen;
 	}
 	public Set<Record> getRecord() {
 		return record;
