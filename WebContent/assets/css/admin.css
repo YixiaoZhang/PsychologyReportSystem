@@ -4,13 +4,14 @@
 
 
 /*
- fixed-layout 固定头部和边栏布局
+ fixed-layout 固定头部和边栏布屄1�7
 */
 
 html,
 body {
   height: 100%;
   overflow: hidden;
+  
 }
 
 ul {
@@ -106,7 +107,7 @@ ul {
 .admin-sidebar {
   height: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
