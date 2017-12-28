@@ -22,7 +22,20 @@
 	<article data-am-widget="paragraph"
 		class="am-paragraph am-paragraph-default"
 		data-am-paragraph="{ tableScrollable: true, pureview: true }">
+	<div data-am-widget="slider" class="am-slider am-slider-a5" data-am-slider='{&quot;directionNav&quot;:false}' >
+  <ul class="am-slides">
+      <li>
+        	<img src="img/index.jpg">
+         
+      </li>
+      <li>
+        	<img src="img/index2.jpg">
+         
+      </li>
+  </ul>
+</div>
 	<br>你好，${session.studentName}！<br>欢迎使用心理月报系统！
+	
 </article>
 
 <s:if test="#dor0!='100'">
@@ -39,8 +52,6 @@
 </article>
 </s:if>
 
-
-<br>
 <s:if test="#class0!='100'">
 <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
 		<h2 class="am-titlebar-title ">心理委员</h2>

@@ -20,24 +20,23 @@
 	<%@ include file="header.jsp"%>
 
 	<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-		<h2 class="am-titlebar-title ">我的信息</h2>
+		<h2 class="am-titlebar-title ">修改成功</h2>
 	</div>
-
-	 <article data-am-widget="paragraph"
+ <article data-am-widget="paragraph"
            class="am-paragraph am-paragraph-default"
            
-           data-am-paragraph="{ tableScrollable: true, pureview: true }"><div class="am-text-center"> 
-	<br>
-	<img class="am-circle" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" width="140" height="140"/>
-	<h3>${name}</h3>
-	${classes}
-	<br>
-	${id}
+           data-am-paragraph="{ tableScrollable: true, pureview: true }">
+	<br><br>
+	<div style="text-align: center;"><span style="color:green;"><i class="fa fa-check-circle fa-5x" aria-hidden="true"></i></span><br>你已修改提交！</div>
 	<br>
 	
-   </div>
+   <div class="am-text-center"> <button type="submit" class="am-btn am-btn-default">&nbsp;&nbsp;&nbsp;&nbsp;返&nbsp;&nbsp;&nbsp;&nbsp;回&nbsp;&nbsp;&nbsp;&nbsp;</button></div>
+<br><br>
+	
 	
 	</article>
+
+
 
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>

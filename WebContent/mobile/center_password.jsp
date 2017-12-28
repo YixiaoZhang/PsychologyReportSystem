@@ -22,35 +22,54 @@
 		<h2 class="am-titlebar-title ">修改密码</h2>
 	</div>
 
-	 <article data-am-widget="paragraph"
-           class="am-paragraph am-paragraph-default"
-           data-am-paragraph="{ tableScrollable: true, pureview: true }"> <br>
-	&nbsp;&nbsp;当前用户：&nbsp;<b>张忆霄</b>
-	<br><br>
-<div class="am-text-center"> 
-<table border="0">
-  <tr>
-    <td width="30%">旧密码</td>
-    <td width="10%">&nbsp;&nbsp;</td>
-    <td width="60%"><input type="password" name="" id="password" value=""/> </td>
-  </tr>
-  <tr>
-    <td>新密码</td>
-    <td>&nbsp;&nbsp;</td>
-    <td><input type="password" name="" id="newpassword" value=""/> </td>
-  </tr>
-  <tr>
-    <td>重&nbsp;&nbsp;&nbsp;&nbsp;复</td>
-    <td>&nbsp;&nbsp;</td>
-    <td><input type="password" name="" id="newpassword2" value=""/> </td>
-  </tr>
-</table>
-<br><br>
-   <button type="submit" class="am-btn am-btn-default">&nbsp;&nbsp;&nbsp;&nbsp;提&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;&nbsp;&nbsp;&nbsp;</button></div>
-<br><br>
+	<article data-am-widget="paragraph"
+		class="am-paragraph am-paragraph-default"
+		data-am-paragraph="{ tableScrollable: true, pureview: true }">
+	<br>
+	&nbsp;&nbsp;当前用户：&nbsp;<b>${session.studentName}</b> <br>
+	<br>
+	<span class="am-badge am-badge-danger">${textFalse}</span> <span
+			class="am-badge am-badge-success">${textTrue}</span>
+	<div class="am-text-center">
+		<form action="ChangePassword" method="post" class="am-form">
+			<table border="0">
+				<tr>
+					<td width="30%">旧密码</td>
+					<td width="10%">&nbsp;&nbsp;</td>
+					<td width="60%"><input type="password" name="password" id="password"
+						value="" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>新密码</td>
+					<td>&nbsp;&nbsp;</td>
+					<td><input type="password" name="newpassword" id="newpassword" value="" />
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>重&nbsp;&nbsp;&nbsp;&nbsp;复</td>
+					<td>&nbsp;&nbsp;</td>
+					<td><input type="password" name="newpassword2" id="newpassword2" value="" />
+					</td>
+				</tr>
+			</table>
+			<br>
+			<br>
+			<button type="submit" class="am-btn am-btn-default">&nbsp;&nbsp;&nbsp;&nbsp;提&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;&nbsp;&nbsp;&nbsp;</button>
 
-</div>
-	
+	<br>
+	<br>
+	</form>
+	</div>
 
 	<br>
 

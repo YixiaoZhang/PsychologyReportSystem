@@ -22,6 +22,12 @@
 		<action name="CenterIndex" class="com.action.mobile.center.CenterIndex">
 			<result>index.jsp</result>
 		</action>
+		<action name="CenterInfo" class="com.action.mobile.center.CenterInfo">
+			<result>center_index.jsp</result>
+		</action>
+		<action name="ChangePassword" class="com.action.mobile.center.ChangePassword">
+			<result>center_password.jsp</result>
+		</action>
 
 	</package>
 

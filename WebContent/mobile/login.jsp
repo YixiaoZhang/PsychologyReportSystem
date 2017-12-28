@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head lang="en">
@@ -41,14 +42,17 @@
 	<div class="am-g">
 		<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
 			<hr>
+			
 			<form action="CheckLogin" method="post" class="am-form">
 				<label for="email">学号</label> <input type="text" name="id" id="id"
 					value=""> <br> <label for="password">密码</label> <input
-					type="password" name="password" id="password" value=""> <br> <br />
+					type="password" name="password" id="password" value=""> <br>
+					<s:if test="#error=='true'"><a class="am-badge am-badge-danger">学号或密码错误！</a><br><br></s:if>
 				<div class="am-cf">
 					<input type="submit" name="" value="登 录"
 						class="am-btn am-btn-primary am-btn-sm am-fl">
 				</div>
+				
 			</form>
 			<hr>
 			<p>© 2017 JavaEE 大型实验.</p>
