@@ -29,7 +29,7 @@
 
 	<ul class="am-menu-nav am-avg-sm-4 am-collapse">
 		<s:if test="#session.isDor">
-			<li class=""><a href="report_all.jsp" class="">寝室长</a></li>
+			<li class=""><a href="ReportIndex" class="">寝室长</a></li>
 		</s:if>
 		<li class="am-parent"><a href="##" class="">消息中心</a>
 			<ul class="am-menu-sub am-collapse  am-avg-sm-3 ">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js">
 <head>
@@ -19,17 +20,15 @@
 	<%@ include file="header.jsp"%>
 
 	<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-		<h2 class="am-titlebar-title ">心理月报</h2>
+		<h2 class="am-titlebar-title ">寝室长工作</h2>
 	</div>
-
 	<article data-am-widget="paragraph"
 		class="am-paragraph am-paragraph-default"
 		data-am-paragraph="{ tableScrollable: true, pureview: true }">
-	当前正在收集&nbsp;&nbsp;<span class="am-badge am-badge-primary">3</span>&nbsp;&nbsp;月心理月报<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;您已完成&nbsp;&nbsp;<span
-		class="am-badge am-badge-success">2</span>&nbsp;&nbsp;份<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;当前待填写&nbsp;&nbsp;<span
-		class="am-badge am-badge-warning">2</span>&nbsp;&nbsp;份<br>
+	当前正在收集&nbsp;&nbsp;<span class="am-badge am-badge-primary">${dor0}</span>&nbsp;&nbsp;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;您已完成&nbsp;&nbsp;<span class="am-badge am-badge-success">${dor1}</span>&nbsp;&nbsp;份<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">${dor2}</span>&nbsp;&nbsp;份<br>
+	
 	<br>
 	<table
 		class="am-table am-table-striped am-table-hover am-table-centered">
@@ -39,21 +38,22 @@
 			<td>学号</td>
 			<td>状态</td>
 		<tr>
+		<s:iterator value="list" id="stu">
 		<tr>
-			<td>陈峥</td>
-			<td>201526810403</td>
-			<td><span class="am-badge am-badge-success" data-am-modal="{target: '#my-alert'}">已填写</span></td>
+			<td><s:property value="#stu.name" /></td>
+			<td><s:property value="#stu.id" /><s:property value="#stu.isFill" /></td>
+			<td>
+			<s:if test="#stu.isFill>0">
+			<span class="am-badge am-badge-success" data-am-modal="{target: '#my-alert'}">已填写</span>
+			</s:if>
+			<s:else>
+			<a href="report_write.jsp?id=x"><span class="am-badge am-badge-warning">待填写</span></a>
+			</s:else>
+			</td>
 		<tr>
-		<tr>
-			<td>张忆霄</td>
-			<td>201526810427</td>
-			<td><span class="am-badge am-badge-success" data-am-modal="{target: '#my-alert'}">已填写</span></td>
-		<tr>
-		<tr>
-			<td>张哲铖</td>
-			<td>201526810428</td>
-			<td><a href="report_write.jsp"><span class="am-badge am-badge-warning">待填写</span></a></td>
-		<tr>
+		</s:iterator>
+		
+		
 	</table>
 
 	</article>

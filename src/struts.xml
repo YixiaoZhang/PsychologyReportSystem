@@ -28,6 +28,9 @@
 		<action name="ChangePassword" class="com.action.mobile.center.ChangePassword">
 			<result>center_password.jsp</result>
 		</action>
+		<action name="ReportIndex" class="com.action.mobile.report.ReportIndex">
+			<result>report_all.jsp</result>
+		</action>
 
 	</package>
 
