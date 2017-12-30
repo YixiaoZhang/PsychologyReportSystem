@@ -87,5 +87,20 @@ public class RecordDao {
 		return record;
 	}
 	
+	/** 查询一个记录（按id） */ 
+	public boolean queryStudentIsFilled(String id) {
+		Record record = null;
+		Session s = sessionFactory.openSession();
+		String hql = "select id from Record where recordedId=? and reportId in (select id from Report where isOpen =1)";
+		Query query = s.createQuery(hql);
+		query.setString(0, id);
+		List<Record> result = query.list();
+		if(!result.isEmpty()){
+			return true;
+		}
+		return false;
+	}
+	
+	
 	
 }

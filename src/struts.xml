@@ -31,6 +31,14 @@
 		<action name="ReportIndex" class="com.action.mobile.report.ReportIndex">
 			<result>report_all.jsp</result>
 		</action>
+		<action name="InputRecord" class="com.action.mobile.report.InputRecord">
+			<result>report_write.jsp</result>
+			<result name="false">error.jsp</result>
+		</action>
+		<action name="SubmitRecord" class="com.action.mobile.report.SubmitRecord">
+			<result>report_success.jsp</result>
+			<result name="false">error.jsp</result>
+		</action>
 
 	</package>
 

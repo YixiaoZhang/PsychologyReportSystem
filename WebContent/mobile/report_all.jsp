@@ -47,7 +47,7 @@
 			<span class="am-badge am-badge-success" data-am-modal="{target: '#my-alert'}">已填写</span>
 			</s:if>
 			<s:else>
-			<a href="report_write.jsp?id=x"><span class="am-badge am-badge-warning">待填写</span></a>
+			<a href="InputRecord?id=<s:property value="#stu.id" />"><span class="am-badge am-badge-warning">待填写</span></a>
 			</s:else>
 			</td>
 		<tr>

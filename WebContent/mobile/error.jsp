@@ -20,17 +20,16 @@
 	<%@ include file="header.jsp"%>
 
 	<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-		<h2 class="am-titlebar-title ">提交成功</h2>
+		<h2 class="am-titlebar-title ">错误</h2>
 	</div>
  <article data-am-widget="paragraph"
            class="am-paragraph am-paragraph-default"
            
            data-am-paragraph="{ tableScrollable: true, pureview: true }">
 	<br><br>
-	<div style="text-align: center;"><span style="color:green;"><i class="fa fa-check-circle fa-5x" aria-hidden="true"></i></span><br>你已成功提交！</div>
+	<div style="text-align: center;"><span style="color:red;"><i class="fa fa-exclamation-circle fa-5x" aria-hidden="true"></i></span><br>系统错误！</div>
 	<br>
 	
-   <div class="am-text-center"> <a href="ReportIndex"><button type="submit" class="am-btn am-btn-default">&nbsp;&nbsp;&nbsp;&nbsp;返&nbsp;&nbsp;&nbsp;&nbsp;回&nbsp;&nbsp;&nbsp;&nbsp;</button></a></div>
 <br><br>
 	
 	

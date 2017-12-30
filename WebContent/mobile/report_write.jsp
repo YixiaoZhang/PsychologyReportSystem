@@ -25,14 +25,14 @@
 	<article data-am-widget="paragraph"
 		class="am-paragraph am-paragraph-default"
 		data-am-paragraph="{ tableScrollable: true, pureview: true }">
-	当前正在填写&nbsp;&nbsp;<span class="am-badge am-badge-success">张忆霄</span>&nbsp;&nbsp;的&nbsp;&nbsp;<span
-		class="am-badge am-badge-success">5</span>&nbsp;&nbsp;月心理月报<br>
+	当前正在填写&nbsp;&nbsp;<span class="am-badge am-badge-success">${stuName}</span>&nbsp;&nbsp;的&nbsp;&nbsp;<span
+		class="am-badge am-badge-success">${repName}</span>&nbsp;&nbsp;<br>
 	<br>
 	<div style="text-align: center;">
 		<h2>心理月报表</h2>
 	</div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每一个人都会遇到困惑，如能及时给予支持，Ta将尽早走出困境，而你正在做的恰是予人玫瑰，让我可以走到Ta身边，给予陪伴和帮助。
-
+<form action="SubmitRecord" method="post" class="am-form">
 <br>
 <br>&nbsp;&nbsp;<span class="am-badge am-badge-primary am-round">Part1</span>&nbsp;选择题（必填）
 	<table class="am-table am-table-striped am-table-hover">
@@ -186,11 +186,15 @@
 		</tr>
 	</table>
 	<br>&nbsp;&nbsp;<span class="am-badge am-badge-primary am-round">Part2</span>&nbsp;其他说明（选填）
-     <input type="text" class="am-form-field am-round" />
+     <input type="text" class="am-form-field am-round" name="text" />
+     <input type="hidden" name="recordId" value="${stuId}"/>
+     <input type="hidden" name="fillId" value="${session.studentId}"/>
+     <input type="hidden" name="repId" value="${repId}"/>
 <br><br>
 
 <div class="am-text-center"> 
    <button type="submit" class="am-btn am-btn-default">&nbsp;&nbsp;&nbsp;&nbsp;提&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;&nbsp;&nbsp;&nbsp;</button></div>
+   </form>
 <br><br>
 
 

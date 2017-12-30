@@ -48,7 +48,7 @@
 	当前正在收集&nbsp;&nbsp;<span class="am-badge am-badge-primary">${dor0}</span>&nbsp;&nbsp;<br>
 	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;您已完成&nbsp;&nbsp;<span class="am-badge am-badge-success">${dor1}</span>&nbsp;&nbsp;份<br>
 	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">${dor2}</span>&nbsp;&nbsp;份<br>
-	<button type="button" class="am-btn am-btn-primary am-fr">现在填写</button>
+	<a href="ReportIndex"><button type="button" class="am-btn am-btn-primary am-fr">现在填写</button></a>
 </article>
 </s:if>
 

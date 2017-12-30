@@ -86,6 +86,37 @@ public class ReportDao {
 		return report;
 	}
 	
+	/** 查询开启的报表名称（按学生id） */ 
+	public String queryReportNameByStudentId(String id) {
+		Report report = null;
+		Session s = sessionFactory.openSession();
+		String hql = "select name from Report where isOpen=1 and gradeId in (select gradeId from Classes where id in (select classes from Student where id = ?))";
+		Query query = s.createQuery(hql);
+		query.setString(0, id);
+		List<String> result = query.list();
+		if(!result.isEmpty()){
+			return result.get(0);
+		}
+		return "error";
+	}
+	
+	/** 通过学生id查月报表id */ 
+	public String queryReportIdByStudentId(String id) {
+		Report report = null;
+		Session s = sessionFactory.openSession();
+		String hql = "select id from Report where isOpen=1 and gradeId in (select gradeId from Classes where id in (select classes from Student where id = ?))";
+		Query query = s.createQuery(hql);
+		query.setString(0, id);
+		List<Integer> result = query.list();
+		if(!result.isEmpty()){
+			return result.get(0).toString();
+		}
+		return "error";
+	}
+	
+	
+	
+	
 	/** 查询全部月报表 */ 
 	public List<Report> queryReport() {
 		Session s = sessionFactory.openSession();
