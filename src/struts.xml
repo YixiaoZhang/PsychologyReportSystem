@@ -39,6 +39,12 @@
 			<result>report_success.jsp</result>
 			<result name="false">error.jsp</result>
 		</action>
+		
+		
+		
+		<action name="ShowAllClasses" class="com.action.pc.grade.classes.ShowAllClasses">
+			<result>admin_classes.jsp</result>
+		</action>
 
 	</package>
 
