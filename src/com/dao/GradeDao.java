@@ -117,4 +117,5 @@ public class GradeDao {
 		List<Grade> result = query.list();
 		return result;
 	}
+	
 }

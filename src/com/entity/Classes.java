@@ -27,6 +27,11 @@ public class Classes implements java.io.Serializable{
 		this.gradeId = gradeId;
 		this.assistantId = assistantId;
 	}
+	public Classes(String name, int gradeId) {
+		super();
+		this.name = name;
+		this.gradeId = gradeId;
+	}
 	public int getId() {
 		return id;
 	}

@@ -6,11 +6,11 @@
 
 <struts>
 
-    <constant name="struts.ui.theme" value="simple" />
-    <constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
-	
+
 
 	<package name="default" namespace="/" extends="struts-default">
 
@@ -39,13 +39,21 @@
 			<result>report_success.jsp</result>
 			<result name="false">error.jsp</result>
 		</action>
-		
-		
-		
+
+
+		<action name="CheckLogin" class="com.action.pc.center.CheckLogin">
+			<result type="chain">CenterIndex</result>
+			<result name="false">login.jsp</result>
+		</action>
+		<action name="CenterIndex" class="com.action.mobile.center.CenterIndex">
+			<result>index.jsp</result>
+		</action>
 		<action name="ShowAllClasses" class="com.action.pc.grade.classes.ShowAllClasses">
 			<result>admin_classes.jsp</result>
 		</action>
-
+		<action name="InsertClasses" class="com.action.pc.grade.classes.InsertClasses">
+			<result type="chain">ShowAllClasses</result>
+		</action>
 	</package>
 
 </struts>

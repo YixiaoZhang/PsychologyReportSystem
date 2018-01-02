@@ -28,14 +28,19 @@ public class ShowAllClasses extends ActionSupport {
 	StudentDao studentdao;
 	@Override
 	public String execute() throws Exception {
-		List<Classes> list = classesdao.queryClasses();
+		Map session = ActionContext.getContext().getSession();
+		int instructorId=(int) session.get("instructorId");
+		List<Classes> list = classesdao.queryClassesbyInstructorId(instructorId);
 		List<ClassesShow> listshow=new ArrayList<ClassesShow>();
 		Student s;
 		for(int i = 0 ; i < list.size() ; i++) {
 			ClassesShow cs=new ClassesShow();
 			s=studentdao.queryStudent(list.get(i).getAssistantId());
 			cs.setAssistantId(list.get(i).getAssistantId());
-			cs.setAssistantName(s.getName());
+			if(s!=null)
+			{
+				cs.setAssistantName(s.getName());
+			}			
 			cs.setName(list.get(i).getName());
 			listshow.add(cs);
 			}

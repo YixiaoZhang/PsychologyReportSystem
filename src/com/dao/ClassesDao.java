@@ -117,4 +117,14 @@ public class ClassesDao {
 		List<Classes> result = query.list();
 		return result;
 	}
+	
+	/** 查询全部班级 (按辅导员id)*/ 
+	public List<Classes> queryClassesbyInstructorId(int instructorId) {
+		Session s = sessionFactory.openSession();
+		String hql = "from Classes where gradeId in (select gradeId from Instructor where id=?)";
+		Query query = s.createQuery(hql);
+		query.setLong(0, instructorId);
+		List<Classes> result = query.list();
+		return result;
+	}
 }
