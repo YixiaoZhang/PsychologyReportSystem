@@ -30,20 +30,7 @@ public class ShowAllClasses extends ActionSupport {
 	public String execute() throws Exception {
 		Map session = ActionContext.getContext().getSession();
 		int instructorId=(int) session.get("instructorId");
-		List<Classes> list = classesdao.queryClassesbyInstructorId(instructorId);
-		List<ClassesShow> listshow=new ArrayList<ClassesShow>();
-		Student s;
-		for(int i = 0 ; i < list.size() ; i++) {
-			ClassesShow cs=new ClassesShow();
-			s=studentdao.queryStudent(list.get(i).getAssistantId());
-			cs.setAssistantId(list.get(i).getAssistantId());
-			if(s!=null)
-			{
-				cs.setAssistantName(s.getName());
-			}			
-			cs.setName(list.get(i).getName());
-			listshow.add(cs);
-			}
+		List<ClassesShow> listshow=classesdao.queryClassesbyInstructorId(instructorId);
 		ActionContext context = ActionContext.getContext();
 		context.put("list", listshow);
 		return "success";

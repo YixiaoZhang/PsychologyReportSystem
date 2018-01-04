@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=GB18030"
 	pageEncoding="GB18030"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js">
 <head>
@@ -69,36 +70,42 @@
 					<form class="am-form">
 						<table class="am-table am-table-striped am-table-hover table-main">
 							<thead>
-								<tr>								
+								<tr>
 									<th width="25%">寝室</th>
 									<th width="25%">寝室长</th>
-									<th width="25%">寝室成员</th>
+									<th width="25%">寝室长学号</th>
 									<th width="25%">操作</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>东14#116</td>
-									<td>詹江鑫</td>
-									<td>张哲铖 张忆霄 陈峥 </td>
-									<td>
-										<div class="am-btn-toolbar">
-											<div class="am-btn-group am-btn-group-xs">
-												<button
-													class="am-btn am-btn-default am-btn-xs am-text-secondary">
-													<span class="am-icon-pencil-square-o"></span> 编辑
-												</button>
-												<button
-													class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-													<span class="am-icon-trash-o"></span> 删除
-												</button>
+								<s:iterator value="list" id="dormitory">
+									<tr>
+										<td><s:property value="#dormitory.name" /></td>
+										<td><s:property value="#dormitory.leaderName" /></td>
+										<td><s:property value="#dormitory.leaderId" /></td>
+										<td>
+											<div class="am-btn-toolbar">
+												<div class="am-btn-group am-btn-group-xs">
+													<button
+														class="am-btn am-btn-default am-btn-xs am-text-secondary">
+														<span class="am-icon-pencil-square-o"></span> 编辑
+													</button>
+													<button
+														class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+														<span class="am-icon-trash-o"></span> 删除
+													</button>
+													<button
+														class="am-btn am-btn-default am-btn-xs am-text-warning">
+														<span class="am-icon-tripadvisor "></span> 查看详情
+													</button>
+												</div>
 											</div>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+								</s:iterator>
 							</tbody>
 						</table>
-						<div class="am-cf">						
+						<div class="am-cf">
 							<div class="am-fr">
 								<ul class="am-pagination">
 									<li class="am-disabled"><a href="#">«</a></li>
@@ -111,7 +118,7 @@
 								</ul>
 							</div>
 						</div>
-						<hr />						
+						<hr />
 					</form>
 				</div>
 

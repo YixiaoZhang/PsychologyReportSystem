@@ -10,7 +10,12 @@ import com.dao.InstructorDao;
 import com.entity.Instructor;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-
+/**
+ * CheckLogin class
+ * 
+ * @author Fitz
+ * @date 2018/1/2
+ */
 public class CheckLogin extends ActionSupport {
 	@Autowired
 	InstructorDao instructorDao;

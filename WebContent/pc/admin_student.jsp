@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=GB18030"
 	pageEncoding="GB18030"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js">
 <head>
@@ -49,7 +50,7 @@
 					<div class="am-form-group">
 						<select data-am-selected="{btnSize: 'sm'}">
 							<option value="option1">按姓名查询</option>
-							<option value="option2">按学号查询</option>							
+							<option value="option2">按学号查询</option>
 						</select>
 					</div>
 				</div>
@@ -68,7 +69,7 @@
 					<form class="am-form">
 						<table class="am-table am-table-striped am-table-hover table-main">
 							<thead>
-								<tr>								
+								<tr>
 									<th width="20%">学号</th>
 									<th width="20%">姓名</th>
 									<th width="20%">性别</th>
@@ -77,11 +78,12 @@
 								</tr>
 							</thead>
 							<tbody>
+							<s:iterator value="list" id="student">
 								<tr>
-									<td>201526810428</td>
-									<td>张哲铖</td>
-									<td>男</td>
-									<td>软件工程1504</td>
+									<td><s:property value="#student.id" /></td>
+									<td><s:property value="#student.name" /></td>
+									<td><s:property value="#student.sex" /></td>
+									<td><s:property value="#student.classesName" /></td>
 									<td>
 										<div class="am-btn-toolbar">
 											<div class="am-btn-group am-btn-group-xs">
@@ -97,10 +99,11 @@
 										</div>
 									</td>
 								</tr>
+								</s:iterator>
 							</tbody>
 						</table>
 						<div class="am-cf">
-						
+
 							<div class="am-fr">
 								<ul class="am-pagination">
 									<li class="am-disabled"><a href="#">«</a></li>
@@ -113,7 +116,7 @@
 								</ul>
 							</div>
 						</div>
-						<hr />					
+						<hr />
 					</form>
 				</div>
 

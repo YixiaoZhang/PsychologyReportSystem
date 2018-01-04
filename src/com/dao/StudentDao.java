@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -11,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Student;
+import com.entity.StudentShow;
 /**
  * StudentDao class
  * 
@@ -217,5 +219,29 @@ public class StudentDao {
 			return false;
 		}
 		return true;
+	}
+	
+	/** 查询所有学生信息(按年级id)*/
+	public List<StudentShow> queryStudentInfo(int gradeId) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<StudentShow> result = new ArrayList();
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + 
+				"From Student s,Classes c\r\n" + 
+				"where c.gradeId=? and s.classes=c.id";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		List<Object[]> resultobj  = query.list();
+		for(int i=0;i<resultobj.size();i++)
+		{
+			StudentShow ss = new StudentShow();
+			ss.setId((String) resultobj.get(i)[0]);
+			ss.setName((String) resultobj.get(i)[1]);
+			ss.setSex(((String) resultobj.get(i)[2]));	
+			ss.setClassesName(((String) resultobj.get(i)[3]));	
+			result.add(ss);	
+		}				
+	
+		return result;
 	}
 }

@@ -42,17 +42,24 @@
 
 
 		<action name="CheckLogin" class="com.action.pc.center.CheckLogin">
-			<result type="chain">CenterIndex</result>
-			<result name="false">login.jsp</result>
-		</action>
-		<action name="CenterIndex" class="com.action.mobile.center.CenterIndex">
 			<result>index.jsp</result>
+			<result name="false">login.jsp</result>
 		</action>
 		<action name="ShowAllClasses" class="com.action.pc.grade.classes.ShowAllClasses">
 			<result>admin_classes.jsp</result>
 		</action>
 		<action name="InsertClasses" class="com.action.pc.grade.classes.InsertClasses">
 			<result type="chain">ShowAllClasses</result>
+		</action>
+		<action name="DeleteClasses" class="com.action.pc.grade.classes.DeleteClasses">
+			<result type="chain">ShowAllClasses</result>
+			<result name="false">index.jsp</result>
+		</action>
+		<action name="ShowAllDormitory" class="com.action.pc.grade.dormitory.ShowAllDormitory">
+			<result>admin_dormitory.jsp</result>
+		</action>
+		<action name="ShowAllStudent" class="com.action.pc.grade.student.ShowAllStudent">
+			<result>admin_student.jsp</result>
 		</action>
 	</package>
 
