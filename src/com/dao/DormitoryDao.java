@@ -192,4 +192,53 @@ public class DormitoryDao {
 		return result;
 	}
 
+	/**得到寝室成员顺序号*/
+	public int findMemberNum(String id) {
+		// TODO Auto-generated method stub
+		//成员顺序号
+		int number=-1;
+		Session s = sessionFactory.openSession();
+		String hql ="select leaderId,member1Id,member2Id,member3Id,member4Id,member5Id"
+				+ " from Dormitory where leaderId=? or member1Id=? or member2Id=? "
+				+ "or member3Id=? or member4Id=? or member5Id=?";
+		Query query = s.createQuery(hql);
+		query.setString(0, id);
+		query.setString(1, id);
+		query.setString(2, id);
+		query.setString(3, id);
+		query.setString(4, id);
+		query.setString(5, id);
+		List<Object[]> resultobj  = query.list();
+		if(resultobj.size()!=0)
+		{
+			for(number=0;number<5;number++)
+			{
+				if(resultobj.get(0)[number]!=null)
+				{
+					if(resultobj.get(0)[number].toString().equals(id))
+					{
+						return number;
+					}
+				}			
+			}
+		}		
+		return number;
+	}
+
+	/** 删除学生所造寝室id(学生id,该学生属性列)*/
+	public void deleteMemberId(String id, String string) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		String hql="update Dormitory set "+string+"=NULL where leaderId=?"+" or member1Id=? or member2Id=? "
+				+ "or member3Id=? or member4Id=? or member5Id=?";
+		Query query = s.createQuery(hql);
+		query.setString(0, id);
+		query.setString(1, id);
+		query.setString(2, id);
+		query.setString(3, id);
+		query.setString(4, id);
+		query.setString(5, id);
+		query.executeUpdate();
+	}
+
 }

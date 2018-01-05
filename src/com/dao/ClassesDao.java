@@ -147,5 +147,17 @@ public class ClassesDao {
 		return result;
 	}
 	
-	
+	/** 验证该同学是否为心理委员(按学生id)*/ 
+	public boolean isAssistant(String id)
+	{
+		Session s = sessionFactory.openSession();
+		String hql = "from Classes where assistantId=?";
+		Query query = s.createQuery(hql);
+		List result = query.list();
+		if(result!=null)
+		{
+			return true;
+		}
+		return false;
+	}
 }

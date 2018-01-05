@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-	pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>¹ÜÀíÑ§Éú</title>
-<meta name="description" content="¹ÜÀíÑ§ÉúÒ³Ãæ">
+<title>ç®¡ç†å­¦ç”Ÿ</title>
+<meta name="description" content="ç®¡ç†å­¦ç”Ÿé¡µé¢">
 <meta name="keywords" content="table">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -19,13 +19,19 @@
 <link rel="stylesheet" href="../assets/css/amazeui.min.css" />
 <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
+<script type="text/javascript">
+	function deleteStudent() {	
+		var result = confirm("ç¡®å®šåˆ é™¤è¯¥å­¦ç”Ÿçš„æ‰€æœ‰ä¿¡æ¯å—ï¼Ÿ");
+		return result;
+	}
+</script>
 <body>
 	<!-- content start -->
 	<div class="admin-content">
 		<div class="admin-content-body">
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">Ñ§Éú</strong>
+					<strong class="am-text-primary am-text-lg">å­¦ç”Ÿ</strong>
 				</div>
 			</div>
 
@@ -35,70 +41,75 @@
 					<div class="am-btn-toolbar">
 						<div class="am-btn-group am-btn-group-xs">
 							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-plus"></span> ĞÂÔö
+								<span class="am-icon-plus"></span><a href="insertStudent.jsp"> æ–°å¢</a>
 							</button>
 							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-file-excel-o"></span> µ¼Èë
+								<span class="am-icon-file-excel-o"></span> å¯¼å…¥
 							</button>
 							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-trash-o"></span> É¾³ı
+								<span class="am-icon-trash-o"></span> åˆ é™¤
 							</button>
 						</div>
 					</div>
 				</div>
+				<form action="QueryStudent" method="post">
 				<div class="am-u-sm-12 am-u-md-3">
 					<div class="am-form-group">
-						<select data-am-selected="{btnSize: 'sm'}">
-							<option value="option1">°´ĞÕÃû²éÑ¯</option>
-							<option value="option2">°´Ñ§ºÅ²éÑ¯</option>
+						<select name="method" data-am-selected="{btnSize: 'sm'}">
+							<option value="1">æŒ‰å§“åæŸ¥è¯¢</option>
+							<option value="2">æŒ‰å­¦å·æŸ¥è¯¢</option>
 						</select>
 					</div>
 				</div>
 				<div class="am-u-sm-12 am-u-md-3">
 					<div class="am-input-group am-input-group-sm">
-						<input type="text" class="am-form-field"> <span
+						<input type="text" class="am-form-field" name="input"> <span
 							class="am-input-group-btn">
-							<button class="am-btn am-btn-default" type="button">ËÑË÷</button>
+							<button class="am-btn am-btn-default" type="submit">æœç´¢</button>
 						</span>
 					</div>
 				</div>
+				</form>
 			</div>
 
 			<div class="am-g">
 				<div class="am-u-sm-12">
-					<form class="am-form">
 						<table class="am-table am-table-striped am-table-hover table-main">
 							<thead>
 								<tr>
-									<th width="20%">Ñ§ºÅ</th>
-									<th width="20%">ĞÕÃû</th>
-									<th width="20%">ĞÔ±ğ</th>
-									<th width="20%">°à¼¶</th>
-									<th width="20%">²Ù×÷</th>
+									<th width="20%">å­¦å·</th>
+									<th width="20%">å§“å</th>
+									<th width="20%">æ€§åˆ«</th>
+									<th width="20%">ç­çº§</th>
+									<th width="20%">æ“ä½œ</th>
 								</tr>
 							</thead>
 							<tbody>
-							<s:iterator value="list" id="student">
-								<tr>
-									<td><s:property value="#student.id" /></td>
-									<td><s:property value="#student.name" /></td>
-									<td><s:property value="#student.sex" /></td>
-									<td><s:property value="#student.classesName" /></td>
-									<td>
-										<div class="am-btn-toolbar">
-											<div class="am-btn-group am-btn-group-xs">
-												<button
-													class="am-btn am-btn-default am-btn-xs am-text-secondary">
-													<span class="am-icon-pencil-square-o"></span> ±à¼­
-												</button>
-												<button
-													class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-													<span class="am-icon-trash-o"></span> É¾³ı
-												</button>
+								<s:iterator value="list" id="student">
+									<tr>
+										<td><s:property value="#student.id" /></td>
+										<td><s:property value="#student.name" /></td>
+										<td><s:property value="#student.sex" /></td>
+										<td><s:property value="#student.classesName" /></td>
+										<td>
+										<form class="am-form" onsubmit="return deleteStudent();"
+												action="DeleteStudent?id=<s:property value="#student.id" />"
+												method="post">
+											<div class="am-btn-toolbar">
+												<div class="am-btn-group am-btn-group-xs">
+													<button
+														class="am-btn am-btn-default am-btn-xs am-text-secondary">
+														<span class="am-icon-pencil-square-o"></span> ç¼–è¾‘
+													</button>
+													<button type="submit"
+														class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+														<span class="am-icon-trash-o"></span> åˆ é™¤
+													</button>
+												</div>
 											</div>
-										</div>
-									</td>
-								</tr>
+											</form>
+										</td>										
+									</tr>
 								</s:iterator>
 							</tbody>
 						</table>
@@ -106,13 +117,13 @@
 
 							<div class="am-fr">
 								<ul class="am-pagination">
-									<li class="am-disabled"><a href="#">0…0</a></li>
+									<li class="am-disabled"><a href="#">Â«</a></li>
 									<li class="am-active"><a href="#">1</a></li>
 									<li><a href="#">2</a></li>
 									<li><a href="#">3</a></li>
 									<li><a href="#">4</a></li>
 									<li><a href="#">5</a></li>
-									<li><a href="#">0†3</a></li>
+									<li><a href="#">Â»</a></li>
 								</ul>
 							</div>
 						</div>
@@ -125,7 +136,7 @@
 
 		<footer class="admin-content-footer">
 		<hr>
-		<p class="am-padding-left">0„8 2014 AllMobilize, Inc. Licensed under
+		<p class="am-padding-left">Â© 2014 AllMobilize, Inc. Licensed under
 			MIT license.</p>
 		</footer>
 

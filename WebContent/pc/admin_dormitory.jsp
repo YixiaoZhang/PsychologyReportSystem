@@ -19,6 +19,12 @@
 <link rel="stylesheet" href="../assets/css/amazeui.min.css" />
 <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
+<script type="text/javascript">
+	function deleteDormitory() {	
+		var result = confirm("确定删除该寝室吗？");
+		return result;
+	}
+</script>
 <body>
 	<!-- content start -->
 	<div class="admin-content">
@@ -66,8 +72,7 @@
 			</div>
 
 			<div class="am-g">
-				<div class="am-u-sm-12">
-					<form class="am-form">
+				<div class="am-u-sm-12">					
 						<table class="am-table am-table-striped am-table-hover table-main">
 							<thead>
 								<tr>
@@ -84,22 +89,26 @@
 										<td><s:property value="#dormitory.leaderName" /></td>
 										<td><s:property value="#dormitory.leaderId" /></td>
 										<td>
-											<div class="am-btn-toolbar">
-												<div class="am-btn-group am-btn-group-xs">
-													<button
-														class="am-btn am-btn-default am-btn-xs am-text-secondary">
-														<span class="am-icon-pencil-square-o"></span> 编辑
-													</button>
-													<button
-														class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-														<span class="am-icon-trash-o"></span> 删除
-													</button>
-													<button
-														class="am-btn am-btn-default am-btn-xs am-text-warning">
-														<span class="am-icon-tripadvisor "></span> 查看详情
-													</button>
+											<form class="am-form" onsubmit="return deleteDormitory();"
+												action="DeleteDormitory?id=<s:property value="#dormitory.id" />"
+												method="post">
+												<div class="am-btn-toolbar">
+													<div class="am-btn-group am-btn-group-xs">
+														<button
+															class="am-btn am-btn-default am-btn-xs am-text-secondary">
+															<span class="am-icon-pencil-square-o"></span> 编辑
+														</button>
+														<button type="submit"
+															class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+															<span class="am-icon-trash-o"></span> 删除
+														</button>
+														<button
+															class="am-btn am-btn-default am-btn-xs am-text-warning">
+															<span class="am-icon-tripadvisor "></span> 查看详情
+														</button>
+													</div>
 												</div>
-											</div>
+											</form>
 										</td>
 									</tr>
 								</s:iterator>

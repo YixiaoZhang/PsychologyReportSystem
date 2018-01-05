@@ -52,14 +52,25 @@
 			<result type="chain">ShowAllClasses</result>
 		</action>
 		<action name="DeleteClasses" class="com.action.pc.grade.classes.DeleteClasses">
-			<result type="chain">ShowAllClasses</result>
-			<result name="false">index.jsp</result>
+			<result type="chain">ShowAllClasses</result>			
 		</action>
 		<action name="ShowAllDormitory" class="com.action.pc.grade.dormitory.ShowAllDormitory">
 			<result>admin_dormitory.jsp</result>
 		</action>
+		<action name="DeleteDormitory" class="com.action.pc.grade.dormitory.DeleteDormitory">
+			<result type="chain">ShowAllDormitory</result>		
+		</action>		
 		<action name="ShowAllStudent" class="com.action.pc.grade.student.ShowAllStudent">
 			<result>admin_student.jsp</result>
+		</action>
+		<action name="InsertStudent" class="com.action.pc.grade.student.InsertStudent">
+			<result type="chain">ShowAllStudent</result>
+		</action>
+		<action name="DeleteStudent" class="com.action.pc.grade.student.DeleteStudent">
+			<result type="chain">ShowAllStudent</result>		
+		</action>
+		<action name="QueryStudent" class="com.action.pc.grade.student.QueryStudent">
+			<result>admin_student.jsp</result>		
 		</action>
 	</package>
 
