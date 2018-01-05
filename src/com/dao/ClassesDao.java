@@ -33,8 +33,8 @@ public class ClassesDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	/** 新增班级 */ 
+
+	/** 新增班级 */
 	public boolean addClasses(Classes classes) {
 		Session s = sessionFactory.openSession();
 		Transaction tx = null;
@@ -54,8 +54,8 @@ public class ClassesDao {
 		}
 		return true;
 	}
-	
-	/** 修改班级 */ 
+
+	/** 修改班级 */
 	public boolean updateClasses(Classes classes) {
 		Session s = sessionFactory.openSession();
 		Transaction tx = null;
@@ -75,8 +75,8 @@ public class ClassesDao {
 		}
 		return true;
 	}
-	
-	/** 删除班级 */ 
+
+	/** 删除班级 */
 	public boolean deleteClasses(int id) {
 		Session s = sessionFactory.openSession();
 		Transaction tx = null;
@@ -92,13 +92,13 @@ public class ClassesDao {
 				tx.rollback();
 			}
 			s.close();
-		} catch(Exception e){
+		} catch (Exception e) {
 			return false;
 		}
 		return false;
 	}
-	
-	/** 查询一个班级（按id） */ 
+
+	/** 查询一个班级（按id） */
 	public Classes queryClasses(int id) {
 		Classes classes = null;
 		Session s = sessionFactory.openSession();
@@ -106,13 +106,30 @@ public class ClassesDao {
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
 		List<Classes> result = query.list();
-		if(!result.isEmpty()){
+		if (!result.isEmpty()) {
 			classes = result.get(0);
 		}
 		return classes;
 	}
-	
-	/** 查询全部班级 */ 
+
+	/** 查询一个班级信息（按id） */
+	public ClassesShow queryClassesInfo(int id) {
+		ClassesShow cs = new ClassesShow();
+		Session s = sessionFactory.openSession();
+		String hql = "select classes.classesId,classesName,studentName,studentId\r\n" + "from classes \r\n"
+				+ "LEFT JOIN student\r\n" + "ON \r\n"
+				+ "assistantId=studentId and student.classesId=classes.classesId\r\n" + "where classes.classesId=?";
+		SQLQuery query = s.createSQLQuery(hql);
+		query.setLong(0, id);
+		List<Object[]> resultobj = query.list();
+		cs.setId((int) resultobj.get(0)[0]);
+		cs.setName((String) resultobj.get(0)[1]);
+		cs.setAssistantName(((String) resultobj.get(0)[2]));
+		cs.setAssistantId((String) resultobj.get(0)[3]);
+		return cs;
+	}
+
+	/** 查询全部班级 */
 	public List<Classes> queryClasses() {
 		Session s = sessionFactory.openSession();
 		String hql = "from Classes";
@@ -120,42 +137,37 @@ public class ClassesDao {
 		List<Classes> result = query.list();
 		return result;
 	}
-	
-	/** 查询全部班级信息 (按辅导员id)*/ 
+
+	/** 查询全部班级信息 (按辅导员id) */
 	@SuppressWarnings("null")
 	public List<ClassesShow> queryClassesbyInstructorId(int instructorId) {
 		Session s = sessionFactory.openSession();
 		List<ClassesShow> result = new ArrayList();
-		String hql = "select classes.classesId,classesName,studentName,studentId\r\n" + 
-				"from classes \r\n" + 
-				"LEFT JOIN student\r\n" + 
-				"ON \r\n" + 
-				"assistantId=studentId and student.classesId=classes.classesId\r\n" + 
-				"where  gradeId in (select gradeId from Instructor where instructorid=?)";
+		String hql = "select classes.classesId,classesName,studentName,studentId\r\n" + "from classes \r\n"
+				+ "LEFT JOIN student\r\n" + "ON \r\n"
+				+ "assistantId=studentId and student.classesId=classes.classesId\r\n"
+				+ "where  gradeId in (select gradeId from Instructor where instructorid=?)";
 		SQLQuery query = s.createSQLQuery(hql);
 		query.setLong(0, instructorId);
-		List<Object[]> resultobj  = query.list();
-		for(int i=0;i<resultobj.size();i++)
-		{
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
 			ClassesShow cs = new ClassesShow();
 			cs.setId((int) resultobj.get(i)[0]);
 			cs.setName((String) resultobj.get(i)[1]);
 			cs.setAssistantName(((String) resultobj.get(i)[2]));
-			cs.setAssistantId((String) resultobj.get(i)[3]);		
-			result.add(cs);	
-		}				
+			cs.setAssistantId((String) resultobj.get(i)[3]);
+			result.add(cs);
+		}
 		return result;
 	}
-	
-	/** 验证该同学是否为心理委员(按学生id)*/ 
-	public boolean isAssistant(String id)
-	{
+
+	/** 验证该同学是否为心理委员(按学生id) */
+	public boolean isAssistant(String id) {
 		Session s = sessionFactory.openSession();
 		String hql = "from Classes where assistantId=?";
 		Query query = s.createQuery(hql);
 		List result = query.list();
-		if(result!=null)
-		{
+		if (result != null) {
 			return true;
 		}
 		return false;

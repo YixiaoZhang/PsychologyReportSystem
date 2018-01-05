@@ -240,5 +240,69 @@ public class DormitoryDao {
 		query.setString(5, id);
 		query.executeUpdate();
 	}
+	/** 查询寝室 (按寝室名) */
+	public List<DormitoryShow> queryDormitoryInfoByName(int gradeId, String input) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<DormitoryShow> result = new ArrayList();
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
+				+ " where d.gradeId=?" + " and d.leaderId=s.id and d.name LIKE '%"+input+"%'";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		List<Object[]> resultobj  = query.list();
+		for(int i=0;i<resultobj.size();i++)
+		{
+			DormitoryShow ds = new DormitoryShow();
+			ds.setId((int) resultobj.get(i)[0]);
+			ds.setName((String) resultobj.get(i)[1]);
+			ds.setLeaderName(((String) resultobj.get(i)[2]));	
+			ds.setLeaderId(((String) resultobj.get(i)[3]));	
+			result.add(ds);	
+		}					
+		return result;
+	}
+	/** 查询寝室 (按成员姓名) */
+	public List<DormitoryShow> queryDormitoryInfoByStudentName(int gradeId, String input) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<DormitoryShow> result = new ArrayList();
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
+				+ " where d.gradeId=?" + " and d.leaderId=s.id and s.name LIKE '%"+input+"%'";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		List<Object[]> resultobj  = query.list();
+		for(int i=0;i<resultobj.size();i++)
+		{
+			DormitoryShow ds = new DormitoryShow();
+			ds.setId((int) resultobj.get(i)[0]);
+			ds.setName((String) resultobj.get(i)[1]);
+			ds.setLeaderName(((String) resultobj.get(i)[2]));	
+			ds.setLeaderId(((String) resultobj.get(i)[3]));	
+			result.add(ds);	
+		}					
+		return result;
+	}
+	/** 查询寝室 (按成员学号) */
+	public List<DormitoryShow> queryDormitoryInfoByStudentId(int gradeId, String input) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<DormitoryShow> result = new ArrayList();
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
+				+ " where d.gradeId=?" + " and d.leaderId=s.id and s.id=?";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		query.setString(1, input);
+		List<Object[]> resultobj  = query.list();
+		for(int i=0;i<resultobj.size();i++)
+		{
+			DormitoryShow ds = new DormitoryShow();
+			ds.setId((int) resultobj.get(i)[0]);
+			ds.setName((String) resultobj.get(i)[1]);
+			ds.setLeaderName(((String) resultobj.get(i)[2]));	
+			ds.setLeaderId(((String) resultobj.get(i)[3]));	
+			result.add(ds);	
+		}					
+		return result;
+	}
 
 }

@@ -26,7 +26,6 @@ public class QueryStudent extends ActionSupport{
 	public String execute() throws Exception {
     	Map session = ActionContext.getContext().getSession();
 		int gradeId = (int) session.get("gradeId");
-    	List<Student> studentlist=new ArrayList();
     	List<StudentShow> listshow=new ArrayList();
     	//按姓名查询
     	if(method.equals("1"))

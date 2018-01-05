@@ -18,6 +18,12 @@
 <link rel="stylesheet" href="../assets/css/amazeui.min.css" />
 <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
+<script type="text/javascript">
+	function updateClasses() {	
+		var result = confirm("确定修改班级信息吗？");
+		return result;
+	}
+</script>
 <body>
 	<!--[if lte IE 9]>
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
@@ -34,7 +40,7 @@
 			</div>
 
 			<hr>
-			<form action="InsertClasses" method="post">
+			<form action="UpdateClasses?classesId=${classes.id}" method="post" onsubmit="return updateClasses();">
 				<div class="am-tabs am-margin" data-am-tabs>
 					<ul class="am-tabs-nav am-nav am-nav-tabs">
 						<li class="am-active">班级信息</a></li>
@@ -44,21 +50,21 @@
 							<div class="am-g am-margin-top">
 								<div class="am-u-sm-4 am-u-md-2 am-text-right">班级名称</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="classesName">
+									<input type="text" id="classesName" name="classesName" value="${classes.name}">
 								</div>								
 							</div>
 							
 								<div class="am-g am-margin-top">
 								<div class="am-u-sm-4 am-u-md-2 am-text-right">心理委员</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="assistantName">
+									<input type="text" id="assistantName" name="assistantName" value="${classes.assistantName}">
 								</div>								
 							</div>
 							
 						   	<div class="am-g am-margin-top">
 								<div class="am-u-sm-4 am-u-md-2 am-text-right">学号</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="assistantId">
+									<input type="text" id="assistantId" name="assistantId" value="${classes.assistantId}">
 								</div>								
 							</div>
 						</div>

@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-	pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>นÜภํวÞสา</title>
-<meta name="description" content="นÜภํวÞสาาณรๆ">
+<title>็ฎก็ๅฏๅฎค</title>
+<meta name="description" content="็ฎก็ๅฏๅฎค้กต้ข">
 <meta name="keywords" content="table">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -21,7 +21,7 @@
 </head>
 <script type="text/javascript">
 	function deleteDormitory() {	
-		var result = confirm("ศทถจษพณýธรวÞสาย๐ฃฟ");
+		var result = confirm("็กฎๅฎๅ ้ค่ฏฅๅฏๅฎคๅ—๏ผ");
 		return result;
 	}
 </script>
@@ -31,7 +31,7 @@
 		<div class="admin-content-body">
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">วÞสา</strong>
+					<strong class="am-text-primary am-text-lg">ๅฏๅฎค</strong>
 				</div>
 			</div>
 
@@ -41,34 +41,33 @@
 					<div class="am-btn-toolbar">
 						<div class="am-btn-group am-btn-group-xs">
 							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-plus"></span> ะยิ๖
+								<span class="am-icon-plus"></span> ๆ–ฐๅข
 							</button>
 							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-file-excel-o"></span> ตผศ๋
-							</button>
-							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-trash-o"></span> ษพณý
+								<span class="am-icon-file-excel-o"></span> ๅฏผๅ…ฅ
 							</button>
 						</div>
 					</div>
 				</div>
+				<form action="QueryDormitory" method="post">
 				<div class="am-u-sm-12 am-u-md-3">
 					<div class="am-form-group">
-						<select data-am-selected="{btnSize: 'sm'}">
-							<option value="option1">ฐดวÞสาบลฒ้ัฏ</option>
-							<option value="option2">ฐดังษ๚ะีร๛ฒ้ัฏ</option>
-							<option value="option3">ฐดังษ๚ังบลฒ้ัฏ</option>
+						<select name="method" data-am-selected="{btnSize: 'sm'}">
+							<option value="1">ๆๅฏๅฎคๅทๆฅ่ฏข</option>
+							<option value="2">ๆๅฏๅฎค้•ฟๅง“ๅๆฅ่ฏข</option>
+							<option value="3">ๆๅฏๅฎค้•ฟๅญฆๅทๆฅ่ฏข</option>
 						</select>
 					</div>
 				</div>
 				<div class="am-u-sm-12 am-u-md-3">
 					<div class="am-input-group am-input-group-sm">
-						<input type="text" class="am-form-field"> <span
+						<input type="text" class="am-form-field" name="input"> <span
 							class="am-input-group-btn">
-							<button class="am-btn am-btn-default" type="button">หัห๗</button>
+							<button class="am-btn am-btn-default" type="submit" >ๆ็ดข</button>
 						</span>
 					</div>
 				</div>
+				</form>
 			</div>
 
 			<div class="am-g">
@@ -76,10 +75,10 @@
 						<table class="am-table am-table-striped am-table-hover table-main">
 							<thead>
 								<tr>
-									<th width="25%">วÞสา</th>
-									<th width="25%">วÞสาณค</th>
-									<th width="25%">วÞสาณคังบล</th>
-									<th width="25%">ฒูื๗</th>
+									<th width="25%">ๅฏๅฎค</th>
+									<th width="25%">ๅฏๅฎค้•ฟ</th>
+									<th width="25%">ๅฏๅฎค้•ฟๅญฆๅท</th>
+									<th width="25%">ๆ“ไฝ</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -96,15 +95,15 @@
 													<div class="am-btn-group am-btn-group-xs">
 														<button
 															class="am-btn am-btn-default am-btn-xs am-text-secondary">
-															<span class="am-icon-pencil-square-o"></span> ฑเผญ
+															<span class="am-icon-pencil-square-o"></span> ็ผ–่พ‘
 														</button>
 														<button type="submit"
 															class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-															<span class="am-icon-trash-o"></span> ษพณý
+															<span class="am-icon-trash-o"></span> ๅ ้ค
 														</button>
 														<button
 															class="am-btn am-btn-default am-btn-xs am-text-warning">
-															<span class="am-icon-tripadvisor "></span> ฒ้ฟดฯ๊ว้
+															<span class="am-icon-tripadvisor "></span> ๆฅ็่ฏฆๆ…
 														</button>
 													</div>
 												</div>
@@ -117,13 +116,13 @@
 						<div class="am-cf">
 							<div class="am-fr">
 								<ul class="am-pagination">
-									<li class="am-disabled"><a href="#">0…0</a></li>
+									<li class="am-disabled"><a href="#">ยซ</a></li>
 									<li class="am-active"><a href="#">1</a></li>
 									<li><a href="#">2</a></li>
 									<li><a href="#">3</a></li>
 									<li><a href="#">4</a></li>
 									<li><a href="#">5</a></li>
-									<li><a href="#">03</a></li>
+									<li><a href="#">ยป</a></li>
 								</ul>
 							</div>
 						</div>
@@ -136,7 +135,7 @@
 
 		<footer class="admin-content-footer">
 		<hr>
-		<p class="am-padding-left">08 2014 AllMobilize, Inc. Licensed under
+		<p class="am-padding-left">ยฉ 2014 AllMobilize, Inc. Licensed under
 			MIT license.</p>
 		</footer>
 

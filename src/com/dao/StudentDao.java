@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Student;
 import com.entity.StudentShow;
+
 /**
  * StudentDao class
  * 
@@ -30,16 +31,16 @@ public class StudentDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	/** 寝室长查询填写情况 */ 
-	public String[] queryDormitoryReport(String id){
-		String[] a = {"100","已填","未填"};
+
+	/** 寝室长查询填写情况 */
+	public String[] queryDormitoryReport(String id) {
+		String[] a = { "100", "已填", "未填" };
 		Session s = sessionFactory.openSession();
 		String hql = "select name from Report where isOpen =1 and gradeId in (select gradeId from Dormitory where leaderId=?)";
 		Query query = s.createQuery(hql);
 		query.setString(0, id);
 		List<String> result = query.list();
-		if(!result.isEmpty()){
+		if (!result.isEmpty()) {
 			a[0] = result.get(0);
 		}
 		hql = "select count(*) from Record where fillId = ? and reportId in (select id from Report where isOpen =1 and gradeId in (select gradeId from Dormitory where leaderId=?))";
@@ -47,7 +48,7 @@ public class StudentDao {
 		query.setString(0, id);
 		query.setString(1, id);
 		List<Long> result1 = query.list();
-		if(!result.isEmpty()){
+		if (!result.isEmpty()) {
 			a[1] = Long.toString(result1.get(0));
 		}
 		hql = "select member1Id,member2Id,member3Id,member4Id,member5Id from Dormitory where leaderId=?";
@@ -55,72 +56,72 @@ public class StudentDao {
 		query.setString(0, id);
 		List<Object> result3 = query.list();
 		int num = 0;
-		if(!result.isEmpty()){
-			Object[] row = (Object[])result3.get(0);
-			for(int i=0;i<5;++i){
-				if(row[i]!=null)
+		if (!result.isEmpty()) {
+			Object[] row = (Object[]) result3.get(0);
+			for (int i = 0; i < 5; ++i) {
+				if (row[i] != null)
 					num++;
 			}
-			a[2]=(num-Integer.parseInt(a[1]))+"";
+			a[2] = (num - Integer.parseInt(a[1])) + "";
 		}
 		return a;
 	}
-	
-	/** 心理委员查询填写情况 */ 
-	public String[] queryClassReport(String id){
-		String[] a = {"100","已填","未填"};
+
+	/** 心理委员查询填写情况 */
+	public String[] queryClassReport(String id) {
+		String[] a = { "100", "已填", "未填" };
 		Session s = sessionFactory.openSession();
 		String hql = "select name from Classes where id in (select id from Classes where assistantId=?)";
 		Query query = s.createQuery(hql);
 		query.setString(0, id);
 		List<String> result = query.list();
-		if(!result.isEmpty()){
+		if (!result.isEmpty()) {
 			a[0] = result.get(0);
 		}
 		hql = "select count(*) from Record where reportId in (select id from Report where isOpen =1)and (recordedId in (select id from Student where classes in (select classes from Student where id=?))))";
 		query = s.createQuery(hql);
 		query.setString(0, id);
 		List<Long> result1 = query.list();
-		if(!result.isEmpty()){
+		if (!result.isEmpty()) {
 			a[1] = Long.toString(result1.get(0));
 		}
-		
+
 		hql = "select count(*) from Student where classes in (select classes from Student where id=?)";
 		query = s.createQuery(hql);
 		query.setString(0, id);
 		result1 = query.list();
-		if(!result.isEmpty()){
-			a[2] = (Integer.parseInt(Long.toString(result1.get(0)))-Integer.parseInt(a[1]))+"";
+		if (!result.isEmpty()) {
+			a[2] = (Integer.parseInt(Long.toString(result1.get(0))) - Integer.parseInt(a[1])) + "";
 		}
-		
+
 		return a;
 	}
-	
-	public boolean isDormitory(String id){
+
+	public boolean isDormitory(String id) {
 		Session s = sessionFactory.openSession();
 		String hql = "select id from Dormitory where leaderId=?";
 		Query query = s.createQuery(hql);
 		query.setString(0, id);
 		List<String> result = query.list();
-		if(!result.isEmpty()){
+		if (!result.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
-	public boolean isAssistant(String id){
+
+	public boolean isAssistant(String id) {
 		Session s = sessionFactory.openSession();
 		String hql = "select id from Classes where assistantId=?";
 		Query query = s.createQuery(hql);
 		query.setString(0, id);
 		List<String> result = query.list();
-		if(!result.isEmpty()){
+		if (!result.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
-	
-	
-	/** 新增学生 */ 
+
+	/** 新增学生 */
 	public boolean addStudent(Student student) {
 		Session s = sessionFactory.openSession();
 		Transaction tx = null;
@@ -140,16 +141,17 @@ public class StudentDao {
 		}
 		return true;
 	}
-	/** 删除学生(学生学号) */ 
+
+	/** 删除学生(学生学号) */
 	public void deletStudent(String id) {
 		Session s = sessionFactory.openSession();
-		String hql="delete from Student where id=?";
-		Query query=s.createQuery(hql);
+		String hql = "delete from Student where id=?";
+		Query query = s.createQuery(hql);
 		query.setString(0, id);
 		query.executeUpdate();
 	}
-	
-	/** 修改学生 */ 
+
+	/** 修改学生 */
 	public boolean updateStudent(Student student) {
 		Session s = sessionFactory.openSession();
 		Transaction tx = null;
@@ -169,8 +171,8 @@ public class StudentDao {
 		}
 		return true;
 	}
-	
-	/** 查询一个学生（按id） */ 
+
+	/** 查询一个学生（按id） */
 	public Student queryStudent(String id) {
 		Student student = null;
 		Session s = sessionFactory.openSession();
@@ -178,13 +180,13 @@ public class StudentDao {
 		Query query = s.createQuery(hql);
 		query.setString(0, id);
 		List<Student> result = query.list();
-		if(!result.isEmpty()){
+		if (!result.isEmpty()) {
 			student = result.get(0);
 		}
 		return student;
 	}
-	
-	/** 查询全部学生 */ 
+
+	/** 查询全部学生 */
 	public List<Student> queryStudent() {
 		Session s = sessionFactory.openSession();
 		String hql = "from Student";
@@ -192,7 +194,7 @@ public class StudentDao {
 		List<Student> result = query.list();
 		return result;
 	}
-	
+
 	/** 验证学生密码 */
 	public boolean checkStudent(String id, String password) {
 		Session s = sessionFactory.openSession();
@@ -206,76 +208,89 @@ public class StudentDao {
 		}
 		return true;
 	}
-	
-	/** 查询所有学生信息(按年级id)*/
+
+	/** 查询所有学生信息(按年级id) */
 	public List<StudentShow> queryStudentInfo(int gradeId) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
 		List<StudentShow> result = new ArrayList();
-		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + 
-				"From Student s,Classes c\r\n" + 
-				"where c.gradeId=? and s.classes=c.id";
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + "From Student s,Classes c\r\n"
+				+ "where c.gradeId=? and s.classes=c.id";
 		Query query = s.createQuery(hql);
 		query.setLong(0, gradeId);
-		List<Object[]> resultobj  = query.list();
-		for(int i=0;i<resultobj.size();i++)
-		{
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
 			StudentShow ss = new StudentShow();
 			ss.setId((String) resultobj.get(i)[0]);
 			ss.setName((String) resultobj.get(i)[1]);
-			ss.setSex(((String) resultobj.get(i)[2]));	
-			ss.setClassesName(((String) resultobj.get(i)[3]));	
-			result.add(ss);	
-		}				
-	
-		return result;
-	}
-   /** 按姓名查询*/
-	public List<StudentShow> queryStudentByName(String input,int gradeId) {
-		// TODO Auto-generated method stub
-		Session s = sessionFactory.openSession();
-		List<StudentShow> result = new ArrayList();
-		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + 
-				"From Student s,Classes c\r\n" + 
-				"where c.gradeId=? and s.classes=c.id and s.name LIKE '%"+input+"%'";
-		Query query = s.createQuery(hql);
-		query.setLong(0, gradeId);
-		List<Object[]> resultobj  = query.list();
-		for(int i=0;i<resultobj.size();i++)
-		{
-			StudentShow ss = new StudentShow();
-			ss.setId((String) resultobj.get(i)[0]);
-			ss.setName((String) resultobj.get(i)[1]);
-			ss.setSex(((String) resultobj.get(i)[2]));	
-			ss.setClassesName(((String) resultobj.get(i)[3]));	
-			result.add(ss);	
+			ss.setSex(((String) resultobj.get(i)[2]));
+			ss.setClassesName(((String) resultobj.get(i)[3]));
+			result.add(ss);
 		}
 
 		return result;
 	}
 
 	/** 按姓名查询 */
-	public List<StudentShow> queryStudentById(String input,int gradeId) {
+	public List<StudentShow> queryStudentByName(String input, int gradeId) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
 		List<StudentShow> result = new ArrayList();
-		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + 
-				"From Student s,Classes c\r\n" + 
-				"where c.gradeId=? and s.classes=c.id and s.id=?";
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + "From Student s,Classes c\r\n"
+				+ "where c.gradeId=? and s.classes=c.id and s.name LIKE '%" + input + "%'";
 		Query query = s.createQuery(hql);
 		query.setLong(0, gradeId);
-		query.setString(0, input);
-		List<Object[]> resultobj  = query.list();
-		for(int i=0;i<resultobj.size();i++)
-		{
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
 			StudentShow ss = new StudentShow();
 			ss.setId((String) resultobj.get(i)[0]);
 			ss.setName((String) resultobj.get(i)[1]);
-			ss.setSex(((String) resultobj.get(i)[2]));	
-			ss.setClassesName(((String) resultobj.get(i)[3]));	
-			result.add(ss);	
+			ss.setSex(((String) resultobj.get(i)[2]));
+			ss.setClassesName(((String) resultobj.get(i)[3]));
+			result.add(ss);
 		}
 
 		return result;
-}
+	}
+
+	/** 按学号查询 */
+	public List<StudentShow> queryStudentById(String input, int gradeId) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<StudentShow> result = new ArrayList();
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + "From Student s,Classes c\r\n"
+				+ "where c.gradeId=? and s.classes=c.id and s.id=?";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		query.setString(1, input);
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
+			StudentShow ss = new StudentShow();
+			ss.setId((String) resultobj.get(i)[0]);
+			ss.setName((String) resultobj.get(i)[1]);
+			ss.setSex(((String) resultobj.get(i)[2]));
+			ss.setClassesName(((String) resultobj.get(i)[3]));
+			result.add(ss);
+		}
+
+		return result;
+	}
+
+	/** 查询单个学生信息(按学生id) */
+	public StudentShow querySingleStudentInfo(String studentId) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + "From Student s,Classes c\r\n"
+				+ "where s.id=? and s.classes=c.id";
+		Query query = s.createQuery(hql);
+		query.setString(0,studentId);
+		List<Object[]> resultobj = query.list();
+		StudentShow ss = new StudentShow();
+		ss.setId((String) resultobj.get(0)[0]);
+		ss.setName((String) resultobj.get(0)[1]);
+		ss.setSex(((String) resultobj.get(1)[2]));
+		ss.setClassesName(((String) resultobj.get(2)[3]));
+		return ss;
+	}
+
 }
