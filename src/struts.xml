@@ -6,11 +6,11 @@
 
 <struts>
 
-    <constant name="struts.ui.theme" value="simple" />
-    <constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
-	
+
 
 	<package name="default" namespace="/" extends="struts-default">
 
@@ -40,6 +40,38 @@
 			<result name="false">error.jsp</result>
 		</action>
 
+
+		<action name="CheckLogin" class="com.action.pc.center.CheckLogin">
+			<result>index.jsp</result>
+			<result name="false">login.jsp</result>
+		</action>
+		<action name="ShowAllClasses" class="com.action.pc.grade.classes.ShowAllClasses">
+			<result>admin_classes.jsp</result>
+		</action>
+		<action name="InsertClasses" class="com.action.pc.grade.classes.InsertClasses">
+			<result type="chain">ShowAllClasses</result>
+		</action>
+		<action name="DeleteClasses" class="com.action.pc.grade.classes.DeleteClasses">
+			<result type="chain">ShowAllClasses</result>			
+		</action>
+		<action name="ShowAllDormitory" class="com.action.pc.grade.dormitory.ShowAllDormitory">
+			<result>admin_dormitory.jsp</result>
+		</action>
+		<action name="DeleteDormitory" class="com.action.pc.grade.dormitory.DeleteDormitory">
+			<result type="chain">ShowAllDormitory</result>		
+		</action>		
+		<action name="ShowAllStudent" class="com.action.pc.grade.student.ShowAllStudent">
+			<result>admin_student.jsp</result>
+		</action>
+		<action name="InsertStudent" class="com.action.pc.grade.student.InsertStudent">
+			<result type="chain">ShowAllStudent</result>
+		</action>
+		<action name="DeleteStudent" class="com.action.pc.grade.student.DeleteStudent">
+			<result type="chain">ShowAllStudent</result>		
+		</action>
+		<action name="QueryStudent" class="com.action.pc.grade.student.QueryStudent">
+			<result>admin_student.jsp</result>		
+		</action>
 	</package>
 
 </struts>

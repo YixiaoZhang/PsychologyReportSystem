@@ -1,9 +1,11 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Classes;
+import com.entity.ClassesShow;
 import com.entity.Instructor;
 
 /**
@@ -116,5 +119,45 @@ public class ClassesDao {
 		Query query = s.createQuery(hql);
 		List<Classes> result = query.list();
 		return result;
+	}
+	
+	/** 查询全部班级信息 (按辅导员id)*/ 
+	@SuppressWarnings("null")
+	public List<ClassesShow> queryClassesbyInstructorId(int instructorId) {
+		Session s = sessionFactory.openSession();
+		List<ClassesShow> result = new ArrayList();
+		String hql = "select classes.classesId,classesName,studentName,studentId\r\n" + 
+				"from classes \r\n" + 
+				"LEFT JOIN student\r\n" + 
+				"ON \r\n" + 
+				"assistantId=studentId and student.classesId=classes.classesId\r\n" + 
+				"where  gradeId in (select gradeId from Instructor where instructorid=?)";
+		SQLQuery query = s.createSQLQuery(hql);
+		query.setLong(0, instructorId);
+		List<Object[]> resultobj  = query.list();
+		for(int i=0;i<resultobj.size();i++)
+		{
+			ClassesShow cs = new ClassesShow();
+			cs.setId((int) resultobj.get(i)[0]);
+			cs.setName((String) resultobj.get(i)[1]);
+			cs.setAssistantName(((String) resultobj.get(i)[2]));
+			cs.setAssistantId((String) resultobj.get(i)[3]);		
+			result.add(cs);	
+		}				
+		return result;
+	}
+	
+	/** 验证该同学是否为心理委员(按学生id)*/ 
+	public boolean isAssistant(String id)
+	{
+		Session s = sessionFactory.openSession();
+		String hql = "from Classes where assistantId=?";
+		Query query = s.createQuery(hql);
+		List result = query.list();
+		if(result!=null)
+		{
+			return true;
+		}
+		return false;
 	}
 }

@@ -117,5 +117,52 @@ public class InstructorDao {
 		List<Instructor> result = query.list();
 		return result;
 	}
+		
+	/** 验证辅导员密码 */
+	public boolean checkInstructorDao(String name, String password) {
+		Session s = sessionFactory.openSession();
+		String hql = "from Instructor as u where u.name=? and u.password=?";
+		Query query = s.createQuery(hql);
+		query.setString(0, name);
+		query.setString(1, password);
+		List result = query.list();
+		if (result.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
 
+	/** 获取辅导员id(按姓名)*/
+    public int 	getInstructorId(String name)
+    {   
+    	Instructor instructor=null;
+    	int id = 0;
+		Session s = sessionFactory.openSession();
+		String hql = "from Instructor where name=?";
+		Query query = s.createQuery(hql);
+		query.setString(0, name);
+		List<Instructor> result = query.list();
+		if (!result.isEmpty()) {
+			instructor = result.get(0);
+			id=instructor.getId();
+		}
+		return id;
+    }
+    
+    /** 获取年级id(按辅导员id)*/
+    public int 	getGradeId(int instructorId)
+    {   
+    	Instructor instructor=null;
+    	int id = 0;
+		Session s = sessionFactory.openSession();
+		String hql = "from Instructor where id=?";
+		Query query = s.createQuery(hql);
+		query.setLong(0, instructorId);
+		List<Instructor> result = query.list();
+		if (!result.isEmpty()) {
+			instructor = result.get(0);
+			id=instructor.getId();
+		}
+		return id;
+    }
 }

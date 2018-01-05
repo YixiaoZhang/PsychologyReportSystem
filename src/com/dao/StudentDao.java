@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -11,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Student;
+import com.entity.StudentShow;
 /**
  * StudentDao class
  * 
@@ -138,6 +140,14 @@ public class StudentDao {
 		}
 		return true;
 	}
+	/** 删除学生(学生学号) */ 
+	public void deletStudent(String id) {
+		Session s = sessionFactory.openSession();
+		String hql="delete from Student where id=?";
+		Query query=s.createQuery(hql);
+		query.setString(0, id);
+		query.executeUpdate();
+	}
 	
 	/** 修改学生 */ 
 	public boolean updateStudent(Student student) {
@@ -158,28 +168,6 @@ public class StudentDao {
 			}
 		}
 		return true;
-	}
-	
-	/** 删除学生 */ 
-	public boolean deleteStudent(String id) {
-		Session s = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = s.beginTransaction();
-			Student student = queryStudent(id);
-			s.delete(student);
-			tx.commit();
-			s.close();
-			return true;
-		} catch (HibernateException e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			s.close();
-		} catch(Exception e){
-			return false;
-		}
-		return false;
 	}
 	
 	/** 查询一个学生（按id） */ 
@@ -218,4 +206,76 @@ public class StudentDao {
 		}
 		return true;
 	}
+	
+	/** 查询所有学生信息(按年级id)*/
+	public List<StudentShow> queryStudentInfo(int gradeId) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<StudentShow> result = new ArrayList();
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + 
+				"From Student s,Classes c\r\n" + 
+				"where c.gradeId=? and s.classes=c.id";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		List<Object[]> resultobj  = query.list();
+		for(int i=0;i<resultobj.size();i++)
+		{
+			StudentShow ss = new StudentShow();
+			ss.setId((String) resultobj.get(i)[0]);
+			ss.setName((String) resultobj.get(i)[1]);
+			ss.setSex(((String) resultobj.get(i)[2]));	
+			ss.setClassesName(((String) resultobj.get(i)[3]));	
+			result.add(ss);	
+		}				
+	
+		return result;
+	}
+   /** 按姓名查询*/
+	public List<StudentShow> queryStudentByName(String input,int gradeId) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<StudentShow> result = new ArrayList();
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + 
+				"From Student s,Classes c\r\n" + 
+				"where c.gradeId=? and s.classes=c.id and s.name LIKE '%"+input+"%'";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		List<Object[]> resultobj  = query.list();
+		for(int i=0;i<resultobj.size();i++)
+		{
+			StudentShow ss = new StudentShow();
+			ss.setId((String) resultobj.get(i)[0]);
+			ss.setName((String) resultobj.get(i)[1]);
+			ss.setSex(((String) resultobj.get(i)[2]));	
+			ss.setClassesName(((String) resultobj.get(i)[3]));	
+			result.add(ss);	
+		}
+
+		return result;
+	}
+
+	/** 按姓名查询 */
+	public List<StudentShow> queryStudentById(String input,int gradeId) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<StudentShow> result = new ArrayList();
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + 
+				"From Student s,Classes c\r\n" + 
+				"where c.gradeId=? and s.classes=c.id and s.id=?";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		query.setString(0, input);
+		List<Object[]> resultobj  = query.list();
+		for(int i=0;i<resultobj.size();i++)
+		{
+			StudentShow ss = new StudentShow();
+			ss.setId((String) resultobj.get(i)[0]);
+			ss.setName((String) resultobj.get(i)[1]);
+			ss.setSex(((String) resultobj.get(i)[2]));	
+			ss.setClassesName(((String) resultobj.get(i)[3]));	
+			result.add(ss);	
+		}
+
+		return result;
+}
 }
