@@ -84,6 +84,9 @@
 		<action name="ShowUpdateStudent" class="com.action.pc.grade.student.ShowUpdateStudent">
 			<result>update_student.jsp</result>			
 		</action>
+		<action name="UpdateStudent" class="com.action.pc.grade.student.UpdateStudent">
+			<result type="chain">ShowAllStudent</result>		
+		</action>
 	</package>
 
 </struts>

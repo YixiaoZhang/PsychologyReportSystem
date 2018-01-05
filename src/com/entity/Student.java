@@ -11,10 +11,6 @@ public class Student implements java.io.Serializable{
 	private String password;
 	private String sex;
 	private int classes;
-	public Student() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	public Student(String id, String name, String password, String sex, int classes) {
 		super();
 		this.id = id;

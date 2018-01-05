@@ -158,6 +158,11 @@ public class StudentDao {
 		try {
 			tx = s.beginTransaction();
 			s.update(student);
+			System.out.println(student.getPassword());
+			System.out.println(student.getName());
+			System.out.println(student.getSex());
+			System.out.println(student.getClasses());
+			System.out.println(student.getId());
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null) {
@@ -288,8 +293,8 @@ public class StudentDao {
 		StudentShow ss = new StudentShow();
 		ss.setId((String) resultobj.get(0)[0]);
 		ss.setName((String) resultobj.get(0)[1]);
-		ss.setSex(((String) resultobj.get(1)[2]));
-		ss.setClassesName(((String) resultobj.get(2)[3]));
+		ss.setSex(((String) resultobj.get(0)[2]));
+		ss.setClassesName(((String) resultobj.get(0)[3]));
 		return ss;
 	}
 
