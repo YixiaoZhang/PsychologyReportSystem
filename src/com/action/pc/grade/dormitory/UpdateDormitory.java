@@ -55,4 +55,5 @@ public class UpdateDormitory extends ActionSupport{
 	public void setDormitorydao(DormitoryDao dormitorydao) {
 		this.dormitorydao = dormitorydao;
 	}
+	
 }

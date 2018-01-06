@@ -9,13 +9,14 @@ import com.dao.DormitoryDao;
 import com.dao.StudentDao;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
 /**
- * ShowSingleDormitory class
+ * ShowUpdateSingleDormitory class
  * 
  * @author Fitz
  * @date 2018/1/6
  */
-public class ShowSingleDormitory extends ActionSupport{
+public class ShowUpdateSingleDormitory extends ActionSupport {
 	@Autowired
 	DormitoryDao dormitorydao;
 	@Autowired
@@ -24,23 +25,22 @@ public class ShowSingleDormitory extends ActionSupport{
 	String name;
 	@Override
 	public String execute() throws Exception {
-		//得到寝室所有人的id
-		List<String> studentidList=new ArrayList();
-		//得到寝室所有人的姓名
-		List<String> studentnameList=new ArrayList();
-		studentidList=dormitorydao.findMemberId(Integer.parseInt(id));
-		for(int i=0;i<studentidList.size();i++)
-		{
-			String studentname=studentdao.queryStudent(studentidList.get(i)).getName();
+		// 得到寝室所有人的id
+		List<String> studentidList = new ArrayList();
+		// 得到寝室所有人的姓名
+		List<String> studentnameList = new ArrayList();
+		System.out.println(id);
+		studentidList = dormitorydao.findMemberId(Integer.parseInt(id));
+		for (int i = 0; i < studentidList.size(); i++) {
+			String studentname = studentdao.queryStudent(studentidList.get(i)).getName();
 			studentnameList.add(studentname);
 		}
 		ActionContext context = ActionContext.getContext();
-		context.put("list", studentnameList);
+		context.put("list", studentidList);
 		System.out.println(name);
-		String name2=name.replace('a', '#');
+		String name2 = name.replace('a', '#');
 		System.out.println(name2);
 		context.put("name2", name2);
-		context.put("name", name);
 		context.put("id", id);
 		return "success";
 	}

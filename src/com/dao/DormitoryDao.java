@@ -355,4 +355,24 @@ public class DormitoryDao {
 		query.setLong(2, id);
 		query.executeUpdate();		
 	}
+
+	public void updateDormitoryMemberInfo(int id, String[] memberId) {
+		// TODO Auto-generated method stub
+		int i=0;
+		Session s = sessionFactory.openSession();
+		String hql="UPDATE Dormitory SET leaderId=?,member1Id=?,member2Id=?,"
+				+ "member3Id=?,member4Id=?,member5Id=? where id=?";
+		Query query = s.createQuery(hql);
+		System.out.println(memberId.length);
+		for(;i<memberId.length;i++)
+		{
+			query.setString(i, memberId[i]);
+			System.out.println(memberId[i]);
+		}
+		System.out.println(i);	
+		for(;i<6;i++)
+			query.setParameter(i, null);
+		query.setLong(6, id);
+		query.executeUpdate();
+	}
 }

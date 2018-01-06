@@ -54,18 +54,14 @@
 										<s:property value="#dormitory" />
 									</s:iterator></td>
 								<td>
-									<form class="am-form" onsubmit="return deleteDormitory();"
-										action="DeleteDormitory?id=<s:property value="#dormitory.id" />"
-										method="post">
 										<div class="am-btn-toolbar">
 											<div class="am-btn-group am-btn-group-xs">
-												<button
-													class="am-btn am-btn-default am-btn-xs am-text-secondary">
-													<span class="am-icon-pencil-square-o"></span> 编辑
-												</button>
+											<a
+														class="am-btn am-btn-default am-btn-xs am-text-secondary"
+														href="ShowUpdateSingleDormitory?id=${id}&name=${name}"><span
+														class="am-icon-pencil-square-o"></span>编辑</a>
 											</div>
 										</div>
-									</form>
 								</td>
 							</tr>
 						</tbody>

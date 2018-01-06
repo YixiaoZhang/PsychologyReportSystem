@@ -78,6 +78,14 @@
 		<action name="ShowUpdateDormitory" class="com.action.pc.grade.dormitory.ShowUpdateDormitory">
 			<result>update_dormitory.jsp</result>		
 		</action>
+		<action name="ShowUpdateSingleDormitory" class="com.action.pc.grade.dormitory.ShowUpdateSingleDormitory">
+			<result>update_singledormitory.jsp</result>		
+		</action>
+		<action name="UpdateSingleDormitory" class="com.action.pc.grade.dormitory.UpdateSingleDormitory">
+			<result type="chain">ShowSingleDormitory</result>					
+		</action>
+		
+		
 		<action name="ShowAllStudent" class="com.action.pc.grade.student.ShowAllStudent">
 			<result>admin_student.jsp</result>
 		</action>
