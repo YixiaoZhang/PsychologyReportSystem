@@ -187,6 +187,7 @@ public class DormitoryDao {
 			ds.setName((String) resultobj.get(i)[1]);
 			ds.setLeaderName(((String) resultobj.get(i)[2]));	
 			ds.setLeaderId(((String) resultobj.get(i)[3]));	
+			ds.setName2(ds.getName().replace('#', 'a'));
 			result.add(ds);	
 		}					
 		return result;
@@ -304,5 +305,54 @@ public class DormitoryDao {
 		}					
 		return result;
 	}
+	
+	/** 查询寝成员所有id(按成员学号) */
+	public List<String> findMemberId(int id) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<String> result=new ArrayList();
+		String hql = "SELECT d.leaderId,d.member1Id,d.member2Id,d.member3Id,d.member4Id,d.member5Id " + "FROM Dormitory d"
+				+ " where d.id=?";
+		Query query = s.createQuery(hql);
+		query.setLong(0, id);
+		List<Object[]> resultobj  = query.list();		
+		for(int i=0;i<6;i++)
+		{
+			if(resultobj.get(0)[i]!=null)
+			{
+				String studentid=resultobj.get(0)[i].toString();
+				System.out.println(studentid);
+				result.add(studentid);	
+			}		
+		}			
+		return result;
+	}
+	/** 查询单个寝室 (按寝室id) */
+	public DormitoryShow querySingleDormitory(int id)
+	{
+		Session s = sessionFactory.openSession();
+		DormitoryShow ds=new DormitoryShow();
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
+				+ " where d.id=?"+ " and d.leaderId=s.id";
+		Query query = s.createQuery(hql);
+		query.setLong(0, id);
+		List<Object[]> resultobj  = query.list();
+		ds.setId((int) resultobj.get(0)[0]);
+		ds.setName((String) resultobj.get(0)[1]);
+		ds.setLeaderName(((String) resultobj.get(0)[2]));	
+		ds.setLeaderId(((String) resultobj.get(0)[3]));	
+		ds.setName2(ds.getName().replace('#', 'a'));
+		return ds;
+	}
 
+	public void updateDormitoryInfo(int id, String name, String leaderId, String leaderName) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		String hql="UPDATE Dormitory SET name=?,leaderId=? where id=?";
+		Query query = s.createQuery(hql);
+		query.setString(0, name);
+		query.setString(1, leaderId);
+		query.setLong(2, id);
+		query.executeUpdate();		
+	}
 }

@@ -63,12 +63,21 @@
 		<action name="ShowAllDormitory" class="com.action.pc.grade.dormitory.ShowAllDormitory">
 			<result>admin_dormitory.jsp</result>
 		</action>
+		<action name="UpdateDormitory" class="com.action.pc.grade.dormitory.UpdateDormitory">
+			<result type="chain">ShowAllDormitory</result>	
+		</action>
 		<action name="DeleteDormitory" class="com.action.pc.grade.dormitory.DeleteDormitory">
 			<result type="chain">ShowAllDormitory</result>		
 		</action>	
 		<action name="QueryDormitory" class="com.action.pc.grade.dormitory.QueryDormitory">
 			<result>admin_dormitory.jsp</result>		
 		</action>	
+		<action name="ShowSingleDormitory" class="com.action.pc.grade.dormitory.ShowSingleDormitory">
+			<result>single_dormitory.jsp</result>		
+		</action>	
+		<action name="ShowUpdateDormitory" class="com.action.pc.grade.dormitory.ShowUpdateDormitory">
+			<result>update_dormitory.jsp</result>		
+		</action>
 		<action name="ShowAllStudent" class="com.action.pc.grade.student.ShowAllStudent">
 			<result>admin_student.jsp</result>
 		</action>
@@ -87,6 +96,7 @@
 		<action name="UpdateStudent" class="com.action.pc.grade.student.UpdateStudent">
 			<result type="chain">ShowAllStudent</result>		
 		</action>
+		
 	</package>
 
 </struts>

@@ -5,8 +5,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>编辑学生信息</title>
-<meta name="description" content="这是一个修改学生信息页面">
+<title>编辑寝室信息</title>
+<meta name="description" content="这是一个修改寝室信息页面">
 <meta name="keywords" content="form">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -19,8 +19,8 @@
 <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <script type="text/javascript">
-	function updateClasses() {
-		var result = confirm("确定修改学生信息吗？");
+	function updateDormitory() {
+		var result = confirm("确定修寝室信息吗？");
 		return result;
 	}
 </script>
@@ -35,45 +35,38 @@
 		<div class="admin-content-body">
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">修改学生信息</strong>
+					<strong class="am-text-primary am-text-lg">修改寝室信息</strong>
 				</div>
 			</div>
 			<hr>
-			<form action="UpdateStudent" method="post"
-				onsubmit="return updateClasses();">
+			<form action="UpdateDormitory?id=${dormitory.id}" method="post"
+				onsubmit="return updateDormitory();">
 				<div class="am-tabs am-margin" data-am-tabs>
 					<ul class="am-tabs-nav am-nav am-nav-tabs">
-						<li class="am-active">学生信息</a></li>
+						<li class="am-active">寝室信息</a></li>
 					</ul>
 					<div class="am-tabs-bd">
 						<div class="am-tab-panel am-fade am-in am-active" id="tab1">
 							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">姓名</div>
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">寝室名</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="name" name="studentName"
-										value="${student.name}">
+									<input type="text" id="name" name="name"
+										value="${dormitory.name}">
 								</div>
 							</div>
 							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">学号</div>
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">寝室长</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="id" name="studentId"
-										value="${student.id}">
+									<input type="text" id="leaderName" name="leaderName"
+										value="${dormitory.leaderName}">
 								</div>
 							</div>
 
 							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">性别</div>
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">学号</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="ses" name="studentSex"
-										value="${student.sex}">
-								</div>
-							</div>
-							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">班级</div>
-								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="classesName"
-										value="${student.classesName}">
+									<input type="text" id="leaderId" name="leaderId"
+										value="${dormitory.leaderId}">
 								</div>
 							</div>
 						</div>

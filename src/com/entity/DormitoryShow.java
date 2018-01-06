@@ -10,6 +10,7 @@ public class DormitoryShow implements java.io.Serializable{
 	private String name;
 	private String leaderName;
 	private String leaderId;
+	private String name2;
 	public DormitoryShow() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -20,6 +21,7 @@ public class DormitoryShow implements java.io.Serializable{
 		this.name = name;
 		this.leaderName = leaderName;
 		this.leaderId = leaderId;
+		this.name2=name.replaceAll("#", "a");
 	}
 	public int getId() {
 		return id;
@@ -44,5 +46,12 @@ public class DormitoryShow implements java.io.Serializable{
 	}
 	public void setLeaderId(String leaderId) {
 		this.leaderId = leaderId;
+	}
+	public String getName2() {
+		return name2;
+	}
+	public void setName2(String name2) {
+		this.name2 = name2;
 	}	
+	
 }
