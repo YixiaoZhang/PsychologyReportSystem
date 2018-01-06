@@ -101,10 +101,10 @@
 															class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
 															<span class="am-icon-trash-o"></span> 删除
 														</button>
-														<button
-															class="am-btn am-btn-default am-btn-xs am-text-warning">
-															<span class="am-icon-tripadvisor "></span> 查看详情
-														</button>
+														<a
+														class="am-btn am-btn-default am-btn-xs am-text-warning"
+														href="ShowSingleDormitory?id=<s:property value="#dormitory.id" />">
+														<span class="am-icon-tripadvisor"></span>查看详情</a>
 													</div>
 												</div>
 											</form>
