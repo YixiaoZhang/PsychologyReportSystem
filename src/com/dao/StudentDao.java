@@ -235,7 +235,42 @@ public class StudentDao {
 
 		return result;
 	}
+	
 
+	/** 查询所有学生信息(按年级id) 分页查询*/
+	public List<StudentShow> queryForPageStudentInfo(int gradeId,int offset, int length) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<StudentShow> result = new ArrayList();
+		String hql = "SELECT s.id,s.name,s.sex,c.name\r\n" + "From Student s,Classes c\r\n"
+				+ "where c.gradeId=? and s.classes=c.id";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		query.setFirstResult(offset);
+		query.setMaxResults(length);
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
+			StudentShow ss = new StudentShow();
+			ss.setId((String) resultobj.get(i)[0]);
+			ss.setName((String) resultobj.get(i)[1]);
+			ss.setSex(((String) resultobj.get(i)[2]));
+			ss.setClassesName(((String) resultobj.get(i)[3]));
+			result.add(ss);
+		}
+
+		return result;
+	}
+	/** 查询所有学生信息(按年级id) 总记录条数*/
+	public int getCount(int gradeId) 
+	{
+		Session s = sessionFactory.openSession();
+		String hql = "SELECT count(*)\r\n" + "From Student s,Classes c\r\n"
+				+ "where c.gradeId=? and s.classes=c.id";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		return Integer.parseInt(query.list().get(0).toString());
+	}
+	
 	/** 按姓名查询 */
 	public List<StudentShow> queryStudentByName(String input, int gradeId) {
 		// TODO Auto-generated method stub

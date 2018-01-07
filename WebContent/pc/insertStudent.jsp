@@ -34,7 +34,7 @@
 			</div>
 
 			<hr>
-			<form action="InsertStudent" method="post">
+			<form action="InsertStudent?page=1" method="post">
 				<div class="am-tabs am-margin" data-am-tabs>
 					<ul class="am-tabs-nav am-nav am-nav-tabs">
 						<li class="am-active">学生信息</a></li>

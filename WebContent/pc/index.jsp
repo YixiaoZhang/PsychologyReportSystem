@@ -78,7 +78,7 @@
 									class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
 							<li><a href="ShowAllDormitory" target="iframe_a"><span
 									class="am-icon-building-o"></span> 管理寝室</a></li>
-							<li><a href="ShowAllStudent" target="iframe_a"><span
+							<li><a href="ShowAllStudent?page=1" target="iframe_a"><span
 									class="am-icon-users"></span> 管理学生<span
 									class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>						
 						</ul></li>

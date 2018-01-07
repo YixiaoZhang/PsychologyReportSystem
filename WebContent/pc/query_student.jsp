@@ -83,26 +83,21 @@
 							</tr>
 						</thead>
 						<tbody>
-
-							<s:iterator value="pageBean.list">
+							<s:iterator value="list" id="student">
 								<tr>
-									<!--<td><s:property value="#student.id" /></td>
+									<td><s:property value="#student.id" /></td>
 										<td><s:property value="#student.name" /></td>
 										<td><s:property value="#student.sex" /></td>
-										<td><s:property value="#student.classesName" /></td>-->
-									<td><s:property value="id" /></td>
-									<td><s:property value="name" /></td>
-									<td><s:property value="sex" /></td>
-									<td><s:property value="classesName" /></td>
+										<td><s:property value="#student.classesName" /></td>
 									<td>
 										<form class="am-form" onsubmit="return deleteStudent();"
-											action="DeleteStudent?id=<s:property value="id" />&page=1"
+											action="DeleteStudent?id=<s:property value="#student.id" />"
 											method="post">
 											<div class="am-btn-toolbar">
 												<div class="am-btn-group am-btn-group-xs">
 													<a
 														class="am-btn am-btn-default am-btn-xs am-text-secondary"
-														href="ShowUpdateStudent?id=<s:property value="id" />"><span
+														href="ShowUpdateStudent?id=<s:property value="#student.id" />"><span
 														class="am-icon-pencil-square-o"></span>编辑</a>
 													<button type="submit"
 														class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
@@ -117,65 +112,7 @@
 						</tbody>
 					</table>
 					<div class="am-cf">
-						共
-						<s:property value="pageBean.allRow" />
-						条记录
-						<div class="am-fr">
-							<ul class="am-pagination">
-								<s:if test="%{pageBean.currentPage == 1}">
-									<li class="am-disabled"><a href="#">«</a></li>
-									<li class="am-active"><a href="ShowAllStudent?page=1"><s:property
-												value="pageBean.currentPage" /></a></li>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+1}"/>"><s:property
-												value="%{pageBean.currentPage+1}" /></a></li>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+2}"/>"><s:property
-												value="%{pageBean.currentPage+2}" /></a></li>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+3}"/>"><s:property
-												value="%{pageBean.currentPage+3}" /></a></li>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+4}"/>"><s:property
-												value="%{pageBean.currentPage+4}" /></a></li>
-									<s:if test="%{pageBean.currentPage!= pageBean.totalPage}">
-										<li><a
-											href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+1}"/>">»</a></li>
-									</s:if>
-									<s:else>
-										<li class="am-disabled"><a href="#">»</a></li>
-									</s:else>
-								</s:if>
-								<s:else>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage-1}"/>">«</a></li>
-									<li><li class="am-active"><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage}"/>"><s:property
-												value="pageBean.currentPage" /></a></li>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+1}"/>"><s:property
-												value="%{pageBean.currentPage+1}" /></a></li>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+2}"/>"><s:property
-												value="%{pageBean.currentPage+2}" /></a></li>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+3}"/>"><s:property
-												value="%{pageBean.currentPage+3}" /></a></li>
-									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+4}"/>"><s:property
-												value="%{pageBean.currentPage+4}" /></a></li>
-									<s:if test="%{pageBean.currentPage!= pageBean.totalPage}">
-										<li><a href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+1}"/>">»</a></li>
-									</s:if>
-									<s:else>
-										<li class="am-disabled"><a href="#">»</a></li>
-									</s:else>
-								</s:else>
-							</ul>
-						</div>
-					</div>
 					<hr />
-					</form>
 				</div>
 
 			</div>
