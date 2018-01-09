@@ -21,6 +21,8 @@ public class CheckLogin extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// TODO 自动生成的方法存根
+		System.out.println(id);
+		System.out.println(password);
 
 		if (studentDao.checkStudent(id, password)) {
 			ApplicationContext act = new ClassPathXmlApplicationContext("beans.xml");

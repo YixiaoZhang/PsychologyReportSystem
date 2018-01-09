@@ -15,7 +15,7 @@
 	<package name="default" namespace="/" extends="struts-default">
 
 		<!-- 响应提交的注册信息 -->
-		<action name="CheckLogin" class="com.action.mobile.center.CheckLogin">
+		<action name="CheckLoginMobile" class="com.action.mobile.center.CheckLogin">
 			<result type="chain">CenterIndex</result>
 			<result name="false">login.jsp</result>
 		</action>
@@ -38,6 +38,12 @@
 		<action name="SubmitRecord" class="com.action.mobile.report.SubmitRecord">
 			<result>report_success.jsp</result>
 			<result name="false">error.jsp</result>
+		</action>
+		<action name="ShowDormitory" class="com.action.mobile.assistant.ShowDormitory">
+			<result>assistant_dormitory.jsp</result>
+		</action>
+		<action name="ClassesIndex" class="com.action.mobile.assistant.ClassesIndex">
+			<result>assistant_class.jsp</result>
 		</action>
 
 

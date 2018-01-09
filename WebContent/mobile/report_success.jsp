@@ -30,7 +30,7 @@
 	<div style="text-align: center;"><span style="color:green;"><i class="fa fa-check-circle fa-5x" aria-hidden="true"></i></span><br>你已成功提交！</div>
 	<br>
 	
-   <div class="am-text-center"> <a href="ReportIndex"><button type="submit" class="am-btn am-btn-default">&nbsp;&nbsp;&nbsp;&nbsp;返&nbsp;&nbsp;&nbsp;&nbsp;回&nbsp;&nbsp;&nbsp;&nbsp;</button></a></div>
+   <div class="am-text-center"> <a href="CenterIndex"><button type="submit" class="am-btn am-btn-default">&nbsp;&nbsp;&nbsp;&nbsp;返&nbsp;&nbsp;&nbsp;&nbsp;回&nbsp;&nbsp;&nbsp;&nbsp;</button></a></div>
 <br><br>
 	
 	

@@ -24,9 +24,9 @@
 	<article data-am-widget="paragraph"
 		class="am-paragraph am-paragraph-default"
 		data-am-paragraph="{ tableScrollable: true, pureview: true }">
-	所在班级&nbsp;&nbsp;<span class="am-badge am-badge-primary">软工1501</span>&nbsp;&nbsp;班<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班已完成填写&nbsp;&nbsp;<span class="am-badge am-badge-success">2</span>&nbsp;&nbsp;份<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">2</span>&nbsp;&nbsp;份<br>
+	所在班级&nbsp;&nbsp;<span class="am-badge am-badge-primary">${dor0}</span>&nbsp;&nbsp;班<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班已完成填写&nbsp;&nbsp;<span class="am-badge am-badge-success">${dor1}</span>&nbsp;&nbsp;份<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;本班当前待填写&nbsp;&nbsp;<span class="am-badge am-badge-warning">${dor2}</span>&nbsp;&nbsp;份<br>
 
 	<br>
 	<table
@@ -34,24 +34,23 @@
 		本班同学
 		<tr>
 			<td>姓名</td>
-			<td>寝室</td>
+			<td>学号</td>
 			<td>状态</td>
 		<tr>
+		<s:iterator value="list" id="stu">
 		<tr>
-			<td>陈峥</td>
-			<td>东14#116</td>
-			<td><span class="am-badge am-badge-success" data-am-modal="{target: '#my-alert'}">已填写</span></td>
+			<td><s:property value="#stu.name" /></td>
+			<td><s:property value="#stu.id" /><s:property value="#stu.isFill" /></td>
+			<td>
+			<s:if test="#stu.isFill>0">
+			<span class="am-badge am-badge-success" data-am-modal="{target: '#my-alert'}">已填写</span>
+			</s:if>
+			<s:else>
+			<a href="InputRecord?id=<s:property value="#stu.id" />"><span class="am-badge am-badge-warning">待填写</span></a>
+			</s:else>
+			</td>
 		<tr>
-		<tr>
-			<td>张忆霄</td>
-			<td>东14#116</td>
-			<td><span class="am-badge am-badge-success" data-am-modal="{target: '#my-alert'}">已填写</span></td>
-		<tr>
-		<tr>
-			<td>张哲铖</td>
-			<td>东14#116</td>
-			<td><span class="am-badge am-badge-warning">待填写</span></td>
-		<tr>
+		</s:iterator>
 	</table>
 
 	</article>

@@ -43,7 +43,7 @@
 		<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
 			<hr>
 			
-			<form action="CheckLogin" method="post" class="am-form">
+			<form action="CheckLoginMobile" method="post" class="am-form">
 				<label for="email">学号</label> <input type="text" name="id" id="id"
 					value=""> <br> <label for="password">密码</label> <input
 					type="password" name="password" id="password" value=""> <br>
