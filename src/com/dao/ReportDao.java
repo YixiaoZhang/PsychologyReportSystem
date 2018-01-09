@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -10,6 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.entity.RecordShow;
 import com.entity.Report;
 /**
  * ReportDao class
@@ -114,6 +116,43 @@ public class ReportDao {
 		return "error";
 	}
 	
+	/** 心理委员显示待填写寝室长列表 */
+	public List<RecordShow> queryDormitoryReportByAssistant(String id) {
+		List<RecordShow> list = new ArrayList<RecordShow>();
+		Session s = sessionFactory.openSession();
+		String hql = "SELECT leaderId FROM Dormitory where gradeId in (select gradeId from Classes where assistantId =?) and leaderId in (select id from Student where classes in (select classes from Student where id = ?))";
+		Query query = s.createQuery(hql);
+		query.setString(0, id);
+		query.setString(1, id);
+		List<String> result = query.list();
+		if (!result.isEmpty()) {
+			
+		}
+		for (String temp : result) {
+			RecordShow rs = new RecordShow();
+			rs.setId(temp);
+			rs.setDormitory("");
+			hql = "select id from Record where recordedId=? and reportId in (select id from Report where isOpen =1 and gradeId in (select gradeId from Classes where assistantId =?))";
+			query = s.createQuery(hql);
+			query.setString(0, temp);
+			query.setString(1, id);
+			result = query.list();
+			if (result.isEmpty()) {
+				rs.setIsFill("0");// 未填写
+			} else {
+				rs.setIsFill("1");// 已填写
+			}
+			hql = "select name from Student where id=?";
+			query = s.createQuery(hql);
+			query.setString(0, temp);
+			List<String> result1 = query.list();
+			if (!result1.isEmpty()) {
+				rs.setName(result1.get(0));
+			}
+			list.add(rs);
+		}
+		return list;
+	}
 	
 	
 	
