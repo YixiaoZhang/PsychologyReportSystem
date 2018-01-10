@@ -80,8 +80,7 @@
 
 	<footer>
 	<hr>
-	<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under
-		MIT license.</p>
+<p class="am-padding-left">© JavaEE大型实验</p>
 	</footer>
 
 	<!--[if lt IE 9]>

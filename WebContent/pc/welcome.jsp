@@ -5,8 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>新增班级</title>
-<meta name="description" content="这是一个新增班级页面">
+<title>欢迎界面</title>
 <meta name="keywords" content="form">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -25,49 +24,25 @@
 <![endif]-->
 
 	<!-- content start -->
-	<div class="admin-content">
-		<div class="admin-content-body">
-			<div class="am-cf am-padding am-padding-bottom-0">
-				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">新增班级</strong>
-				</div>
-			</div>
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf">
+          <strong class="am-text-primary am-text-lg">欢迎</strong> /
+          <small>Welcome</small>
+        </div>
+      </div>
 
-			<hr>
-			<form action="InsertClasses" method="post">
-				<div class="am-tabs am-margin" data-am-tabs>
-					<ul class="am-tabs-nav am-nav am-nav-tabs">
-						<li class="am-active">班级信息</a></li>
-					</ul>
-					<div class="am-tabs-bd">
-						<div class="am-tab-panel am-fade am-in am-active" id="tab1">
-							<div class="am-g am-margin-top"></div>
-							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">班级名称</div>
-								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="classesName" placeholder="如:软工1501">
-								</div>
-								<div class="am-u-sm-4 am-u-md-2 am-text-right"></div>
-							</div>
-						</div>
+      <hr/>
 
-						<div class="am-g am-margin-top"></div>
-						<div class="am-margin">
-							</a>
-							<button type="submit" class="am-btn am-btn-primary am-btn-xs">确认</button>
-						</div>
-					</div>
-					</div>
-			</form>
-			<footer class="admin-content-footer">
-			<hr>
-			<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed
-				under MIT license.</p>
-			</footer>
-		</div>
-		<!-- content end -->
-
-	</div>
+      <div class="am-g">
+        <div class="am-u-sm-12 am-u-sm-centered">
+          <h2>欢迎，${instructorName}</h2>
+          <p>感谢使用心理月报系统！</p>
+          <hr/>
+        </div>
+      </div>
+      
+    </div>
 
 	<a href="#"
 		class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"

@@ -9,6 +9,7 @@
 			<generator class="increment" />
 		</id>
 		<property name="name" column="reportName" />
+		<property name="isOpen" column="isOpen" />
 		<property name="gradeId" column="gradeId" />
 		 <!-- cascade级联操作 -->
         <set name="record" cascade="all" lazy="false">

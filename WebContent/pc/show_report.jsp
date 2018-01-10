@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>管理学生</title>
-<meta name="description" content="管理学生页面">
+<title>查看心理月报表</title>
+<meta name="description" content="管理寝室页面">
 <meta name="keywords" content="table">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -20,8 +20,8 @@
 <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <script type="text/javascript">
-	function deleteStudent() {
-		var result = confirm("确定删除该学生的所有信息吗？");
+	function deleteDormitory() {
+		var result = confirm("确定删除该寝室吗？");
 		return result;
 	}
 </script>
@@ -31,31 +31,22 @@
 		<div class="admin-content-body">
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">学生</strong>
+					<strong class="am-text-primary am-text-lg">心理月报记录表</strong>
 				</div>
 			</div>
 
 			<hr>
 			<div class="am-g">
 				<div class="am-u-sm-12 am-u-md-6">
-					<div class="am-btn-toolbar">
-						<div class="am-btn-group am-btn-group-xs">
-							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-plus"></span><a href="insertStudent.jsp">
-									新增</a>
-							</button>
-							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-file-excel-o"></span> 导入
-							</button>
-						</div>
-					</div>
+					<div class="am-btn-toolbar"></div>
 				</div>
-				<form action="QueryStudent" method="post">
+				<form action="QueryReport" method="post">
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-form-group">
 							<select name="method" data-am-selected="{btnSize: 'sm'}">
-								<option value="1">按姓名查询</option>
-								<option value="2">按学号查询</option>
+								<option value="1">按学生学号查询</option>
+								<option value="2">按学生姓名查询</option>
+								<option value="3">按学生学号查询</option>
 							</select>
 						</div>
 					</div>
@@ -75,44 +66,51 @@
 					<table class="am-table am-table-striped am-table-hover table-main">
 						<thead>
 							<tr>
-								<th width="20%">学号</th>
-								<th width="20%">姓名</th>
-								<th width="20%">性别</th>
-								<th width="20%">班级</th>
-								<th width="20%">操作</th>
+								<th width="10%">心理月报表</th>
+								<th width="10%">学号</th>
+								<th width="10%">寝室长学号</th>
+								<th>问题一</th>
+								<th>问题二</th>
+								<th>问题三</th>
+								<th>问题四</th>
+								<th>问题五</th>
+								<th>问题六</th>
+								<th>问题七</th>
+								<th>问题八</th>
+								<th>问题九</th>
+								<th width="10%">填写时间</th>
+								<!--  <th width="25%">问题二</th>
+								<th width="25%">问题三</th>
+								<th width="25%">问题四</th>
+								<th width="25%">问题五</th>
+								<th width="25%">问题六</th>
+								<th width="25%">问题七</th>
+								<th width="25%">问题八</th>
+								<th width="25%">问题九</th>-->
 							</tr>
 						</thead>
 						<tbody>
-							<s:iterator value="list" id="student">
+							<s:iterator value="reportresult" id="report">
 								<tr>
-									<td><s:property value="#student.id" /></td>
-										<td><s:property value="#student.name" /></td>
-										<td><s:property value="#student.sex" /></td>
-										<td><s:property value="#student.classesName" /></td>
-									<td>
-										<form class="am-form" onsubmit="return deleteStudent();"
-											action="DeleteStudent?id=<s:property value="#student.id" />"
-											method="post">
-											<div class="am-btn-toolbar">
-												<div class="am-btn-group am-btn-group-xs">
-													<a
-														class="am-btn am-btn-default am-btn-xs am-text-secondary"
-														href="ShowUpdateStudent?id=<s:property value="#student.id" />"><span
-														class="am-icon-pencil-square-o"></span>编辑</a>
-													<button type="submit"
-														class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-														<span class="am-icon-trash-o"></span> 删除
-													</button>
-												</div>
-											</div>
-										</form>
-									</td>
+									<td><s:property value="#report.reportName" /></td>
+									<td><s:property value="#report.studentId" /></td>
+									<td><s:property value="#report.fillId" /></td>
+									<td><s:property value="#report.answer1" /></td>
+									<td><s:property value="#report.answer2" /></td>
+									<td><s:property value="#report.answer3" /></td>
+									<td><s:property value="#report.answer4" /></td>
+									<td><s:property value="#report.answer5" /></td>
+									<td><s:property value="#report.answer6" /></td>
+									<td><s:property value="#report.answer7" /></td>
+									<td><s:property value="#report.answer8" /></td>
+									<td><s:property value="#report.answer9" /></td>
+									<td><s:property value="#report.time" /></td>
 								</tr>
 							</s:iterator>
 						</tbody>
-					</table>
-					<div class="am-cf">
+					</table>					
 					<hr />
+					</form>
 				</div>
 
 			</div>

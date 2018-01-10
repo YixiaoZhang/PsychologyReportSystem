@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,6 +25,16 @@
 		return result;
 	}
 </script>
+<script type="text/javascript">
+	function setSelected(selectObj, optionsText) {
+		for (var i = 0; i < selectObj.options.length; i++) {
+			if (selectObj.options[i].text == optionsText) {
+				selectObj.options[i].selected = true;
+				return i;
+			}
+		}
+	}
+</script>
 <body>
 	<!--[if lte IE 9]>
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
@@ -39,8 +50,9 @@
 				</div>
 			</div>
 			<hr>
-			<form action="UpdateDormitory?id=${dormitory.id}" method="post"
-				onsubmit="return updateDormitory();">
+			<form
+				action="UpdateDormitory?id=${dormitory.id}"
+				method="post" onsubmit="return updateDormitory();">
 				<div class="am-tabs am-margin" data-am-tabs>
 					<ul class="am-tabs-nav am-nav am-nav-tabs">
 						<li class="am-active">寝室信息</a></li>
@@ -57,16 +69,85 @@
 							<div class="am-g am-margin-top">
 								<div class="am-u-sm-4 am-u-md-2 am-text-right">寝室长</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="leaderName" name="leaderName"
-										value="${dormitory.leaderName}">
+									<select id="leaderId" name="leaderId"
+										data-am-selected="{btnSize: 'sm'}">
+										<option value="${dormitoryInfo.leaderId}">${dormitory.leaderName}</option>
+										<option value="${dormitoryInfo.member1Id}">${dormitory.member1Name}</option>
+										<option value="${dormitoryInfo.member2Id}">${dormitory.member2Name}</option>
+										<option value="${dormitoryInfo.member3Id}">${dormitory.member3Name}</option>
+										<option value="${dormitoryInfo.member4Id}">${dormitory.member4Name}</option>
+										<option value="${dormitoryInfo.member5Id}">${dormitory.member5Name}</option>
+									</select>
 								</div>
 							</div>
-
 							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">学号</div>
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">成员一</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="leaderId" name="leaderId"
-										value="${dormitory.leaderId}">
+									<select id="member1Id" name="member1Id"
+										data-am-selected="{btnSize: 'sm'}">								
+										<option value="${dormitoryInfo.member1Id}">${dormitory.member1Name}</option>	
+										<option value="${dormitoryInfo.leaderId}">${dormitory.leaderName}</option>	
+										<option value="${dormitoryInfo.member2Id}">${dormitory.member2Name}</option>
+										<option value="${dormitoryInfo.member3Id}">${dormitory.member3Name}</option>
+										<option value="${dormitoryInfo.member4Id}">${dormitory.member4Name}</option>
+										<option value="${dormitoryInfo.member5Id}">${dormitory.member5Name}</option>							
+									</select>
+								</div>
+							</div>
+							<div class="am-g am-margin-top">
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">成员二</div>
+								<div class="am-u-sm-8 am-u-md-10">
+									<select id="member2Id" name="member2Id"
+										data-am-selected="{btnSize: 'sm'}">																		
+										<option value="${dormitoryInfo.member2Id}">${dormitory.member2Name}</option>	
+										<option value="${dormitoryInfo.member1Id}">${dormitory.member1Name}</option>
+										<option value="${dormitoryInfo.member3Id}">${dormitory.member3Name}</option>
+										<option value="${dormitoryInfo.member4Id}">${dormitory.member4Name}</option>
+										<option value="${dormitoryInfo.member5Id}">${dormitory.member5Name}</option>	
+										<option value="${dormitoryInfo.leaderId}">${dormitory.leaderName}</option>									
+									</select>
+								</div>
+							</div>
+							<div class="am-g am-margin-top">
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">成员三</div>
+								<div class="am-u-sm-8 am-u-md-10">
+									<select id="member3Id" name="member3Id"
+										data-am-selected="{btnSize: 'sm'}">								
+										<option value="${dormitoryInfo.member3Id}">${dormitory.member3Name}</option>	
+										<option value="${dormitoryInfo.member1Id}">${dormitory.member1Name}</option>
+										<option value="${dormitoryInfo.member2Id}">${dormitory.member2Name}</option>
+										<option value="${dormitoryInfo.member4Id}">${dormitory.member4Name}</option>
+										<option value="${dormitoryInfo.member5Id}">${dormitory.member5Name}</option>	
+										<option value="${dormitoryInfo.leaderId}">${dormitory.leaderName}</option>											
+									</select>
+								</div>
+							</div>
+							<div class="am-g am-margin-top">
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">成员四</div>
+								<div class="am-u-sm-8 am-u-md-10">
+									<select id="member4Id" name="member4Id"
+										data-am-selected="{btnSize: 'sm'}">								
+										<option value="${dormitoryInfo.member4Id}">${dormitory.member4Name}</option>	
+										<option value="${dormitoryInfo.member2Id}">${dormitory.member1Name}</option>
+										<option value="${dormitoryInfo.member3Id}">${dormitory.member3Name}</option>
+										<option value="${dormitoryInfo.member2Id}">${dormitory.member2Name}</option>
+										<option value="${dormitoryInfo.member5Id}">${dormitory.member5Name}</option>	
+										<option value="${dormitoryInfo.leaderId}">${dormitory.leaderName}</option>											
+									</select>
+								</div>
+							</div>
+							<div class="am-g am-margin-top">
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">成员五</div>
+								<div class="am-u-sm-8 am-u-md-10">
+									<select id="member5Id" name="member5Id"
+										data-am-selected="{btnSize: 'sm'}">								
+										<option value="${dormitoryInfo.member5Id}">${dormitory.member5Name}</option>	
+										<option value="${dormitoryInfo.member2Id}">${dormitory.member1Name}</option>
+										<option value="${dormitoryInfo.member3Id}">${dormitory.member3Name}</option>
+										<option value="${dormitoryInfo.member4Id}">${dormitory.member4Name}</option>
+										<option value="${dormitoryInfo.member2Id}">${dormitory.member2Name}</option>	
+										<option value="${dormitoryInfo.leaderId}">${dormitory.leaderName}</option>											
+									</select>
 								</div>
 							</div>
 						</div>
@@ -87,15 +168,17 @@
 		<!-- content end -->
 
 	</div>
-
+	<script>
+		var selObj = document.getElementById('leaderId');
+		var s2 = setSelected(selObj, '${dormitory.leaderName}');
+	</script>
 	<a href="#"
 		class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
 		data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
 	<footer>
 	<hr>
-	<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under
-		MIT license.</p>
+	<p class="am-padding-left">© JavaEE大型实验</p>
 	</footer>
 
 	<!--[if lt IE 9]>

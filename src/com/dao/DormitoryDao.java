@@ -170,36 +170,34 @@ public class DormitoryDao {
 		return list;
 	}
 
-	
 	/** 查询全部寝室 (按年级id) */
 	public List<DormitoryShow> queryDormitoryInfo(int gradeId) {
 		Session s = sessionFactory.openSession();
 		List<DormitoryShow> result = new ArrayList();
-		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
-				+ " where d.gradeId=?" + " and d.leaderId=s.id";
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s" + " where d.gradeId=?"
+				+ " and d.leaderId=s.id";
 		Query query = s.createQuery(hql);
 		query.setLong(0, gradeId);
-		List<Object[]> resultobj  = query.list();
-		for(int i=0;i<resultobj.size();i++)
-		{
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
 			DormitoryShow ds = new DormitoryShow();
 			ds.setId((int) resultobj.get(i)[0]);
 			ds.setName((String) resultobj.get(i)[1]);
-			ds.setLeaderName(((String) resultobj.get(i)[2]));	
-			ds.setLeaderId(((String) resultobj.get(i)[3]));	
+			ds.setLeaderName(((String) resultobj.get(i)[2]));
+			ds.setLeaderId(((String) resultobj.get(i)[3]));
 			ds.setName2(ds.getName().replace('#', 'a'));
-			result.add(ds);	
-		}					
+			result.add(ds);
+		}
 		return result;
 	}
 
-	/**得到寝室成员顺序号*/
+	/** 得到寝室成员顺序号 */
 	public int findMemberNum(String id) {
 		// TODO Auto-generated method stub
-		//成员顺序号
-		int number=-1;
+		// 成员顺序号
+		int number = -1;
 		Session s = sessionFactory.openSession();
-		String hql ="select leaderId,member1Id,member2Id,member3Id,member4Id,member5Id"
+		String hql = "select leaderId,member1Id,member2Id,member3Id,member4Id,member5Id"
 				+ " from Dormitory where leaderId=? or member1Id=? or member2Id=? "
 				+ "or member3Id=? or member4Id=? or member5Id=?";
 		Query query = s.createQuery(hql);
@@ -209,28 +207,24 @@ public class DormitoryDao {
 		query.setString(3, id);
 		query.setString(4, id);
 		query.setString(5, id);
-		List<Object[]> resultobj  = query.list();
-		if(resultobj.size()!=0)
-		{
-			for(number=0;number<5;number++)
-			{
-				if(resultobj.get(0)[number]!=null)
-				{
-					if(resultobj.get(0)[number].toString().equals(id))
-					{
+		List<Object[]> resultobj = query.list();
+		if (resultobj.size() != 0) {
+			for (number = 0; number < 5; number++) {
+				if (resultobj.get(0)[number] != null) {
+					if (resultobj.get(0)[number].toString().equals(id)) {
 						return number;
 					}
-				}			
+				}
 			}
-		}		
+		}
 		return number;
 	}
 
-	/** 删除学生所造寝室id(学生id,该学生属性列)*/
+	/** 删除学生所造寝室id(学生id,该学生属性列) */
 	public void deleteMemberId(String id, String string) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
-		String hql="update Dormitory set "+string+"=NULL where leaderId=?"+" or member1Id=? or member2Id=? "
+		String hql = "update Dormitory set " + string + "=NULL where leaderId=?" + " or member1Id=? or member2Id=? "
 				+ "or member3Id=? or member4Id=? or member5Id=?";
 		Query query = s.createQuery(hql);
 		query.setString(0, id);
@@ -241,136 +235,161 @@ public class DormitoryDao {
 		query.setString(5, id);
 		query.executeUpdate();
 	}
+
 	/** 查询寝室 (按寝室名) */
 	public List<DormitoryShow> queryDormitoryInfoByName(int gradeId, String input) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
 		List<DormitoryShow> result = new ArrayList();
-		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
-				+ " where d.gradeId=?" + " and d.leaderId=s.id and d.name LIKE '%"+input+"%'";
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s" + " where d.gradeId=?"
+				+ " and d.leaderId=s.id and d.name LIKE '%" + input + "%'";
 		Query query = s.createQuery(hql);
 		query.setLong(0, gradeId);
-		List<Object[]> resultobj  = query.list();
-		for(int i=0;i<resultobj.size();i++)
-		{
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
 			DormitoryShow ds = new DormitoryShow();
 			ds.setId((int) resultobj.get(i)[0]);
 			ds.setName((String) resultobj.get(i)[1]);
-			ds.setLeaderName(((String) resultobj.get(i)[2]));	
-			ds.setLeaderId(((String) resultobj.get(i)[3]));	
-			result.add(ds);	
-		}					
+			ds.setLeaderName(((String) resultobj.get(i)[2]));
+			ds.setLeaderId(((String) resultobj.get(i)[3]));
+			result.add(ds);
+		}
 		return result;
 	}
+
 	/** 查询寝室 (按成员姓名) */
 	public List<DormitoryShow> queryDormitoryInfoByStudentName(int gradeId, String input) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
 		List<DormitoryShow> result = new ArrayList();
-		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
-				+ " where d.gradeId=?" + " and d.leaderId=s.id and s.name LIKE '%"+input+"%'";
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s" + " where d.gradeId=?"
+				+ " and d.leaderId=s.id and s.name LIKE '%" + input + "%'";
 		Query query = s.createQuery(hql);
 		query.setLong(0, gradeId);
-		List<Object[]> resultobj  = query.list();
-		for(int i=0;i<resultobj.size();i++)
-		{
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
 			DormitoryShow ds = new DormitoryShow();
 			ds.setId((int) resultobj.get(i)[0]);
 			ds.setName((String) resultobj.get(i)[1]);
-			ds.setLeaderName(((String) resultobj.get(i)[2]));	
-			ds.setLeaderId(((String) resultobj.get(i)[3]));	
-			result.add(ds);	
-		}					
+			ds.setLeaderName(((String) resultobj.get(i)[2]));
+			ds.setLeaderId(((String) resultobj.get(i)[3]));
+			result.add(ds);
+		}
 		return result;
 	}
+
 	/** 查询寝室 (按成员学号) */
 	public List<DormitoryShow> queryDormitoryInfoByStudentId(int gradeId, String input) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
 		List<DormitoryShow> result = new ArrayList();
-		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
-				+ " where d.gradeId=?" + " and d.leaderId=s.id and s.id=?";
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s" + " where d.gradeId=?"
+				+ " and d.leaderId=s.id and s.id=?";
 		Query query = s.createQuery(hql);
 		query.setLong(0, gradeId);
 		query.setString(1, input);
-		List<Object[]> resultobj  = query.list();
-		for(int i=0;i<resultobj.size();i++)
-		{
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
 			DormitoryShow ds = new DormitoryShow();
 			ds.setId((int) resultobj.get(i)[0]);
 			ds.setName((String) resultobj.get(i)[1]);
-			ds.setLeaderName(((String) resultobj.get(i)[2]));	
-			ds.setLeaderId(((String) resultobj.get(i)[3]));	
-			result.add(ds);	
-		}					
+			ds.setLeaderName(((String) resultobj.get(i)[2]));
+			ds.setLeaderId(((String) resultobj.get(i)[3]));
+			result.add(ds);
+		}
 		return result;
 	}
-	
+
 	/** 查询寝成员所有id(按成员学号) */
 	public List<String> findMemberId(int id) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
-		List<String> result=new ArrayList();
-		String hql = "SELECT d.leaderId,d.member1Id,d.member2Id,d.member3Id,d.member4Id,d.member5Id " + "FROM Dormitory d"
-				+ " where d.id=?";
+		List<String> result = new ArrayList();
+		String hql = "SELECT d.leaderId,d.member1Id,d.member2Id,d.member3Id,d.member4Id,d.member5Id "
+				+ "FROM Dormitory d" + " where d.id=?";
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
-		List<Object[]> resultobj  = query.list();		
-		for(int i=0;i<6;i++)
-		{
-			if(resultobj.get(0)[i]!=null)
-			{
-				String studentid=resultobj.get(0)[i].toString();
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < 6; i++) {
+			if (resultobj.get(0)[i] != null) {
+				String studentid = resultobj.get(0)[i].toString();
 				System.out.println(studentid);
-				result.add(studentid);	
-			}		
-		}			
+				result.add(studentid);
+			}
+		}
 		return result;
 	}
+
 	/** 查询单个寝室 (按寝室id) */
-	public DormitoryShow querySingleDormitory(int id)
-	{
+	public DormitoryShow querySingleDormitory(int id) {
 		Session s = sessionFactory.openSession();
-		DormitoryShow ds=new DormitoryShow();
-		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s"
-				+ " where d.id=?"+ " and d.leaderId=s.id";
+		DormitoryShow ds = new DormitoryShow();
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s" + " where d.id=?"
+				+ " and d.leaderId=s.id";
 		Query query = s.createQuery(hql);
 		query.setLong(0, id);
-		List<Object[]> resultobj  = query.list();
+		List<Object[]> resultobj = query.list();
 		ds.setId((int) resultobj.get(0)[0]);
 		ds.setName((String) resultobj.get(0)[1]);
-		ds.setLeaderName(((String) resultobj.get(0)[2]));	
-		ds.setLeaderId(((String) resultobj.get(0)[3]));	
+		ds.setLeaderName(((String) resultobj.get(0)[2]));
+		ds.setLeaderId(((String) resultobj.get(0)[3]));
 		ds.setName2(ds.getName().replace('#', 'a'));
 		return ds;
 	}
 
-	public void updateDormitoryInfo(int id, String name, String leaderId, String leaderName) {
+	public void updateDormitoryInfo(Dormitory dormitory) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
-		String hql="UPDATE Dormitory SET name=?,leaderId=? where id=?";
+		String hql = "UPDATE Dormitory SET name=?,leaderId=?";
+	
+		if (!dormitory.getMember1Id().equals("0")) {
+			System.out.println("213");
+			System.out.println(dormitory.getMember1Id());
+			hql += ",member1Id='" + dormitory.getMember1Id()+"'";
+		} else
+			hql += ",member1Id=NULL";
+		
+		if (!dormitory.getMember2Id().equals("0")) {
+			hql += ",member2Id='" + dormitory.getMember2Id()+"'";
+		} else
+			hql += ",member2Id=NULL";
+		
+		if (!dormitory.getMember3Id().equals("0")) {
+			hql += ",member3Id='" + dormitory.getMember3Id()+"'";
+		} else
+			hql += ",member3Id=NULL";
+		
+		if (!dormitory.getMember4Id().equals("0")) {
+			hql += ",member4Id='" + dormitory.getMember4Id()+"'";
+		} else
+			hql += ",member4Id=NULL";
+		
+		if (!dormitory.getMember5Id().equals("0")) {
+			hql += ",member5Id='" + dormitory.getMember5Id()+"'";
+		} else
+			hql += ",member5Id=NULL";
+		hql += " where id=?";
 		Query query = s.createQuery(hql);
-		query.setString(0, name);
-		query.setString(1, leaderId);
-		query.setLong(2, id);
-		query.executeUpdate();		
+		query.setString(0, dormitory.getName());
+		query.setString(1, dormitory.getLeaderId());		
+		query.setLong(2, dormitory.getId());
+		query.executeUpdate();
 	}
 
 	public void updateDormitoryMemberInfo(int id, String[] memberId) {
 		// TODO Auto-generated method stub
-		int i=0;
+		int i = 0;
 		Session s = sessionFactory.openSession();
-		String hql="UPDATE Dormitory SET leaderId=?,member1Id=?,member2Id=?,"
+		String hql = "UPDATE Dormitory SET leaderId=?,member1Id=?,member2Id=?,"
 				+ "member3Id=?,member4Id=?,member5Id=? where id=?";
 		Query query = s.createQuery(hql);
 		System.out.println(memberId.length);
-		for(;i<memberId.length;i++)
-		{
+		for (; i < memberId.length; i++) {
 			query.setString(i, memberId[i]);
 			System.out.println(memberId[i]);
 		}
-		System.out.println(i);	
-		for(;i<6;i++)
+		System.out.println(i);
+		for (; i < 6; i++)
 			query.setParameter(i, null);
 		query.setLong(6, id);
 		query.executeUpdate();

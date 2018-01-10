@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,9 +20,19 @@
 <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <script type="text/javascript">
-	function updateClasses() {	
+	function updateClasses() {
 		var result = confirm("确定修改班级信息吗？");
 		return result;
+	}
+</script>
+<script type="text/javascript">
+	function setSelected(selectObj, optionsText) {
+		for (var i = 0; i < selectObj.options.length; i++) {
+			if (selectObj.options[i].text == optionsText) {
+				selectObj.options[i].selected = true;
+				return i;
+			}
+		}
 	}
 </script>
 <body>
@@ -40,42 +51,43 @@
 			</div>
 
 			<hr>
-			<form action="UpdateClasses?classesId=${classes.id}" method="post" onsubmit="return updateClasses();">
+			<form action="UpdateClasses?classesId=${classes.id}" method="post"
+				onsubmit="return updateClasses();">
 				<div class="am-tabs am-margin" data-am-tabs>
 					<ul class="am-tabs-nav am-nav am-nav-tabs">
 						<li class="am-active">班级信息</a></li>
 					</ul>
 					<div class="am-tabs-bd">
-						<div class="am-tab-panel am-fade am-in am-active" id="tab1">					
+						<div class="am-tab-panel am-fade am-in am-active" id="tab1">
 							<div class="am-g am-margin-top">
 								<div class="am-u-sm-4 am-u-md-2 am-text-right">班级名称</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="classesName" value="${classes.name}">
-								</div>								
+									<input type="text" id="classesName" name="classesName"
+										value="${classes.name}">
+								</div>
 							</div>
-							
-								<div class="am-g am-margin-top">
+
+							<div class="am-g am-margin-top">
 								<div class="am-u-sm-4 am-u-md-2 am-text-right">心理委员</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="assistantName" name="assistantName" value="${classes.assistantName}">
-								</div>								
+									<select id="assistantId" name="assistantId"
+										data-am-selected="{btnSize: 'sm'}">
+										<s:iterator value="studentlist" id="student">
+											<option value="<s:property value="#student.id" />"><s:property
+													value="#student.name" /></option>
+										</s:iterator>
+									</select>
+								</div>
 							</div>
-							
-						   	<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">学号</div>
-								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="assistantId" name="assistantId" value="${classes.assistantId}">
-								</div>								
-							</div>
-						</div>
 
-						<div class="am-g am-margin-top"></div>
-						<div class="am-margin">
-							<button type="submit" class="am-btn am-btn-primary am-btn-xs">确认修改</button>
+							<div class="am-g am-margin-top"></div>
+							<div class="am-margin">
+								<button type="submit" class="am-btn am-btn-primary am-btn-xs">确认修改</button>
+							</div>
 						</div>
-					</div>
 					</div>
 			</form>
+
 			<footer class="admin-content-footer">
 			<hr>
 			<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed
@@ -85,15 +97,17 @@
 		<!-- content end -->
 
 	</div>
-
+	<script>
+		var selObj = document.getElementById('assistantId');
+		var s2 = setSelected(selObj, '${classes.assistantName}');
+	</script>
 	<a href="#"
 		class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
 		data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
 	<footer>
 	<hr>
-	<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under
-		MIT license.</p>
+	<p class="am-padding-left">© JavaEE大型实验</p>
 	</footer>
 
 	<!--[if lt IE 9]>

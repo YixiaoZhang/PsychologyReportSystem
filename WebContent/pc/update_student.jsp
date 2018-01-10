@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,6 +23,16 @@
 	function updateClasses() {
 		var result = confirm("确定修改学生信息吗？");
 		return result;
+	}
+</script>
+<script type="text/javascript">
+	function setSelected(selectObj, optionsText) {
+		for (var i = 0; i < selectObj.options.length; i++) {
+			if (selectObj.options[i].text == optionsText) {
+				selectObj.options[i].selected = true;
+				return i;
+			}
+		}
 	}
 </script>
 <body>
@@ -72,8 +83,13 @@
 							<div class="am-g am-margin-top">
 								<div class="am-u-sm-4 am-u-md-2 am-text-right">班级</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="classesName"
-										value="${student.classesName}">
+									<select id="classesId" name="classesName"
+										data-am-selected="{btnSize: 'sm'}">
+										<s:iterator value="classes" id="classes">
+											<option value="<s:property value="#classes.id" />"><s:property
+													value="#classes.name" /></option>
+										</s:iterator>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -94,15 +110,17 @@
 		<!-- content end -->
 
 	</div>
-
+	<script>
+		var selObj = document.getElementById('classesId');
+		var s2 = setSelected(selObj, '${student.classesName}');
+	</script>
 	<a href="#"
 		class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
 		data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
 	<footer>
 	<hr>
-	<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under
-		MIT license.</p>
+	<p class="am-padding-left">© JavaEE大型实验</p>
 	</footer>
 
 	<!--[if lt IE 9]>

@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>单个寝室</title>
-<meta name="description" content="单个寝室页面">
+<title>管理心理月报表</title>
+<meta name="description" content="管理寝室页面">
 <meta name="keywords" content="table">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -31,29 +31,62 @@
 		<div class="admin-content-body">
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">${name2}</strong>
+					<strong class="am-text-primary am-text-lg">心理月报表汇总</strong>
 				</div>
 			</div>
+
 			<hr>
+			<div class="am-g">
+				
+			</div>
 
 			<div class="am-g">
 				<div class="am-u-sm-12">
 					<table class="am-table am-table-striped am-table-hover table-main">
 						<thead>
 							<tr>
-								<th>寝室名</th>
-								<th>寝室所有成员</th>								
+								<th width="25%">心理月报表</th>
+								<th width="25%">操作</th>
 							</tr>
 						</thead>
 						<tbody>
-
-							<tr>
-								<td>${name2}</td>
-								<td><s:iterator value="list" id="dormitory">
-										<s:property value="#dormitory" />
-									</s:iterator></td>
-							</tr>
+							<s:iterator value="reportresult" id="report">
+								<tr>
+									<td><s:property value="#report.name" /></td>
+									<td>							
+											<div class="am-btn-toolbar">
+												<div class="am-btn-group am-btn-group-xs">
+													<a
+														class="am-btn am-btn-default am-btn-xs am-text-secondary"
+														href="SetOpen?id=<s:property value="#report.id" />&isOpen=<s:property value="#report.isOpen" />">
+														<span class="am-icon-pencil-square-o"></span> 
+														<s:if test="#report.isOpen==0">开启</s:if> 
+														<s:else>
+														关闭
+														</s:else> </a> <a
+														class="am-btn am-btn-default am-btn-xs am-text-warning"
+														href="ShowAllRecord?id=<s:property value="#report.id" />"> <span
+														class="am-icon-tripadvisor"></span>查看详情
+													</a>
+												</div>
+											</div>
+									</td>
+								</tr>
+							</s:iterator>
 						</tbody>
+					</table>
+					<div class="am-cf">
+						<div class="am-fr">
+							<ul class="am-pagination">
+								<li class="am-disabled"><a href="#">«</a></li>
+								<li class="am-active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">»</a></li>
+							</ul>
+						</div>
 					</div>
 					<hr />
 					</form>
@@ -64,7 +97,7 @@
 
 		<footer class="admin-content-footer">
 		<hr>
-		<p class="am-padding-left">© JavaEE大型实验</p>
+	    <p class="am-padding-left">© JavaEE大型实验</p>
 		</footer>
 
 	</div>

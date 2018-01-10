@@ -172,4 +172,13 @@ public class ClassesDao {
 		}
 		return false;
 	}
+	
+	/** 查询全部班级 (年级)*/
+	public List<Classes> queryClassesbyGradeId(int gradeId) {
+		Session s = sessionFactory.openSession();
+		String hql = "from Classes";
+		Query query = s.createQuery(hql);
+		List<Classes> result = query.list();
+		return result;
+	}
 }

@@ -199,7 +199,15 @@ public class StudentDao {
 		List<Student> result = query.list();
 		return result;
 	}
-
+	/** 查询全部学生 (按班级)*/
+	public List<Student> queryStudentbyClasses(int id) {
+		Session s = sessionFactory.openSession();
+		String hql = "from Student where classesId=?";
+		Query query = s.createQuery(hql);
+		query.setLong(0, id);
+		List<Student> result = query.list();
+		return result;
+	}
 	/** 验证学生密码 */
 	public boolean checkStudent(String id, String password) {
 		Session s = sessionFactory.openSession();

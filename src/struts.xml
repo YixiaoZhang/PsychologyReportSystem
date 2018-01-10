@@ -111,6 +111,21 @@
 			<result type="chain">ShowAllStudent</result>		
 		</action>
 		
+		<action name="ShowAllReport" class="com.action.pc.report.ShowAllReport">
+			<result>admin_report.jsp</result>
+		</action>
+		<action name="ShowAllRecord" class="com.action.pc.report.ShowAllRecord">
+			<result>show_report.jsp</result>
+		</action>
+		<action name="QueryReport" class="com.action.pc.report.QueryReport">
+			<result>show_report.jsp</result>
+		</action>
+		<action name="AddReport" class="com.action.pc.report.AddReport">
+			<result>index.jsp</result>
+		</action>
+		<action name="SetOpen" class="com.action.pc.report.SetOpen">
+			<result type="chain">ShowAllReport</result>
+		</action>
 	</package>
 
 </struts>

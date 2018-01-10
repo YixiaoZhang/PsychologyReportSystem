@@ -25,6 +25,7 @@ public class UpdateClasses extends ActionSupport{
  	public String execute() throws Exception {
     	 Map session = ActionContext.getContext().getSession();
  		int gradeId=(int) session.get("gradeId");
+ 		System.out.println(assistantId);
     	 Classes  classes=new Classes(Integer.parseInt(classesId),classesName,gradeId,assistantId);
     	 classesdao.updateClasses(classes);
     	 return "success";

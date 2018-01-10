@@ -1,10 +1,13 @@
 package com.action.pc.grade.student;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.dao.ClassesDao;
 import com.dao.StudentDao;
+import com.entity.Classes;
 import com.entity.Student;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -20,17 +23,46 @@ public class UpdateStudent extends ActionSupport {
 	String studentName;
 	String studentSex;
 	String classesName;
+	String classesId;
 	@Autowired
 	StudentDao studentdao;
+	@Autowired
+	ClassesDao classesdao;
 
 	@Override
 	public String execute() throws Exception {
-		int classesId=1;
 		// 学生初始密码均为123
-		System.out.println(studentId);
-		Student student = new Student(studentId, studentName,"123",studentSex,classesId);
+		System.out.println(studentId);		
+		Student student = new Student(studentId, studentName,"123",studentSex,Integer.parseInt(classesId));
 		studentdao.updateStudent(student);
 		return "success";
+	}
+	/**
+	 * @return the classesId
+	 */
+	public String getClassesId() {
+		return classesId;
+	}
+
+	/**
+	 * @param classesId the classesId to set
+	 */
+	public void setClassesId(String classesId) {
+		this.classesId = classesId;
+	}
+
+	/**
+	 * @return the classesdao
+	 */
+	public ClassesDao getClassesdao() {
+		return classesdao;
+	}
+
+	/**
+	 * @param classesdao the classesdao to set
+	 */
+	public void setClassesdao(ClassesDao classesdao) {
+		this.classesdao = classesdao;
 	}
 
 	public String getStudentId() {
