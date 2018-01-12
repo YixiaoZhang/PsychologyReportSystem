@@ -3,6 +3,7 @@ package com.action.pc.grade.classes;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dao.ClassesDao;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -19,10 +20,14 @@ public class DeleteClasses extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		System.out.println(id);
+		String result = null;
 		if (classesdao.deleteClasses(Integer.parseInt(id))) {
-			return "success";
-		}
-		return "false";
+			result="true";			
+		}else
+			result="false";
+		ActionContext context = ActionContext.getContext();				
+		context.put("result",result);
+		return "success";
 	}
 
 	public ClassesDao getClassesdao() {

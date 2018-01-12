@@ -35,7 +35,11 @@ public class UpdateDormitory extends ActionSupport{
 		int gradeId = (int) session.get("gradeId");
 		Dormitory dormitory=new Dormitory(Integer.parseInt(id),name,leaderId,member1Id,member2Id,member3Id,member4Id,member5Id,gradeId);
 		//dormitorydao.updateDormitory(dormitory);
-		dormitorydao.updateDormitoryInfo(dormitory);
+		boolean result=dormitorydao.updateDormitoryInfo(dormitory);
+		ActionContext context = ActionContext.getContext();
+		String page="1"; 
+    	context.put("page", page); 
+    	context.put("result2", result); 
 		return "success";
 	}
 	public String getId() {

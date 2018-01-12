@@ -27,7 +27,9 @@ public class UpdateClasses extends ActionSupport{
  		int gradeId=(int) session.get("gradeId");
  		System.out.println(assistantId);
     	 Classes  classes=new Classes(Integer.parseInt(classesId),classesName,gradeId,assistantId);
-    	 classesdao.updateClasses(classes);
+    	 boolean result=classesdao.updateClasses(classes);
+    	 ActionContext context = ActionContext.getContext();
+    	 context.put("result1", result);    	
     	 return "success";
      }
 	public String getClassesId() {

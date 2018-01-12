@@ -83,7 +83,7 @@
 							<div class="am-g am-margin-top">
 								<div class="am-u-sm-4 am-u-md-2 am-text-right">班级</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<select id="classesId" name="classesName"
+									<select id="classesId" name="classesId"
 										data-am-selected="{btnSize: 'sm'}">
 										<s:iterator value="classes" id="classes">
 											<option value="<s:property value="#classes.id" />"><s:property

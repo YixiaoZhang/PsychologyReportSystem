@@ -337,7 +337,7 @@ public class DormitoryDao {
 		return ds;
 	}
 
-	public void updateDormitoryInfo(Dormitory dormitory) {
+	public boolean updateDormitoryInfo(Dormitory dormitory) {
 		// TODO Auto-generated method stub
 		Session s = sessionFactory.openSession();
 		String hql = "UPDATE Dormitory SET name=?,leaderId=?";
@@ -374,6 +374,7 @@ public class DormitoryDao {
 		query.setString(1, dormitory.getLeaderId());		
 		query.setLong(2, dormitory.getId());
 		query.executeUpdate();
+		return true;
 	}
 
 	public void updateDormitoryMemberInfo(int id, String[] memberId) {
@@ -393,5 +394,38 @@ public class DormitoryDao {
 			query.setParameter(i, null);
 		query.setLong(6, id);
 		query.executeUpdate();
+	}
+
+	public List<DormitoryShow> queryForPageDormitoryInfo(int gradeId, int offset, int length) {
+		// TODO Auto-generated method stub
+		Session s = sessionFactory.openSession();
+		List<DormitoryShow> result = new ArrayList();
+		String hql = "SELECT d.id,d.name,s.name,s.id " + "FROM Dormitory d,Student s" + " where d.gradeId=?"
+				+ " and d.leaderId=s.id";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		query.setFirstResult(offset);
+		query.setMaxResults(length);
+		List<Object[]> resultobj = query.list();
+		for (int i = 0; i < resultobj.size(); i++) {
+			DormitoryShow ds = new DormitoryShow();
+			ds.setId((int) resultobj.get(i)[0]);
+			ds.setName((String) resultobj.get(i)[1]);
+			ds.setLeaderName(((String) resultobj.get(i)[2]));
+			ds.setLeaderId(((String) resultobj.get(i)[3]));
+			ds.setName2(ds.getName().replace('#', 'a'));
+			result.add(ds);
+		}
+		return result;
+	}
+	/** 查询所有寝室信息(按年级id) 总记录条数*/
+	public int getCount(int gradeId) 
+	{
+		Session s = sessionFactory.openSession();
+		String hql = "SELECT count(*)\r\n" + "From Dormitory d\r\n"
+				+ "where d.gradeId=?";
+		Query query = s.createQuery(hql);
+		query.setLong(0, gradeId);
+		return Integer.parseInt(query.list().get(0).toString());
 	}
 }

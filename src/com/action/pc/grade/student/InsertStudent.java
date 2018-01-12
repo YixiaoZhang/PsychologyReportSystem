@@ -33,7 +33,9 @@ public class InsertStudent extends ActionSupport{
 		else sex="男";
 		//学生初始密码均为123
 		Student student=new Student(id,name,"123",sex,Integer.parseInt(classesId));
-		studentdao.addStudent(student);		
+		boolean result=studentdao.addStudent(student);		
+		ActionContext context = ActionContext.getContext();
+		context.put("result", result);
 		return "success";		
 	}
 	public String getName() {

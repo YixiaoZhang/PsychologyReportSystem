@@ -20,6 +20,13 @@ public class Dormitory implements java.io.Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Dormitory(String name,String leaderId,int gradeId) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.name=name;
+		this.leaderId=leaderId;
+		this.gradeId=gradeId;
+	}
 	public Dormitory(int id, String name, String leaderId, String member1Id, String member2Id, String member3Id,
 			String member4Id, String member5Id, int gradeId) {
 		super();

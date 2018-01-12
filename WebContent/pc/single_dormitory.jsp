@@ -42,7 +42,7 @@
 						<thead>
 							<tr>
 								<th>寝室名</th>
-								<th>寝室所有成员</th>								
+								<th>寝室所有成员</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -54,35 +54,32 @@
 									</s:iterator></td>
 							</tr>
 						</tbody>
-					</div>
-					<hr />
-					</form>
-				</div>
+						</div>
+						<hr />
+						</form>
+						</div>
 
-			</div>
-		</div>
-
-		<footer class="admin-content-footer">
-		<hr>
-		<p class="am-padding-left">© JavaEE大型实验</p>
-		</footer>
-
-	</div>
-	<!-- content end -->
+						</div>
+						</div>
 
 
 
+						</div>
+						<!-- content end -->
 
-	<!--[if lt IE 9]>
+					
+
+
+						<!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 
-	<!--[if (gte IE 9)|!(IE)]><!-->
-	<script src="../assets/js/jquery.min.js"></script>
-	<!--<![endif]-->
-	<script src="../assets/js/amazeui.min.js"></script>
-	<script src="../assets/js/app.js"></script>
+						<!--[if (gte IE 9)|!(IE)]><!-->
+						<script src="../assets/js/jquery.min.js"></script>
+						<!--<![endif]-->
+						<script src="../assets/js/amazeui.min.js"></script>
+						<script src="../assets/js/app.js"></script>
 </body>
 </html>

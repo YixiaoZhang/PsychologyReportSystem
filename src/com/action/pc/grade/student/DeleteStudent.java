@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dao.DormitoryDao;
 import com.dao.StudentDao;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -63,7 +64,11 @@ public class DeleteStudent extends ActionSupport {
 				
 		}
 		// 删除学生中该学生的id
-		studentdao.deletStudent(id);
+		boolean result=studentdao.deletStudent(id);
+		ActionContext context = ActionContext.getContext();
+		String page="1"; 
+    	context.put("page", page); 
+    	context.put("result1", result); 
 		return "success";
 
 	}

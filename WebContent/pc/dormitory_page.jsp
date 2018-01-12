@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>管理学生</title>
-<meta name="description" content="管理学生页面">
+<title>管理寝室</title>
+<meta name="description" content="管理寝室页面">
 <meta name="keywords" content="table">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -20,8 +20,8 @@
 <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <script type="text/javascript">
-	function deleteStudent() {
-		var result = confirm("确定删除该学生的所有信息吗？");
+	function deleteDormitory() {
+		var result = confirm("确定删除该寝室吗？");
 		return result;
 	}
 </script>
@@ -32,8 +32,6 @@
 <script type="text/javascript">
 	if(${result1})
 		alert("刪除成功！");
-	else
-		alert("删除失败！请确定该学生是否为心理委员")
 </script>
 <script type="text/javascript">
 	if(${result2})
@@ -45,7 +43,7 @@
 		<div class="admin-content-body">
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">学生</strong>
+					<strong class="am-text-primary am-text-lg">寝室</strong>
 				</div>
 			</div>
 
@@ -55,8 +53,7 @@
 					<div class="am-btn-toolbar">
 						<div class="am-btn-group am-btn-group-xs">
 							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-plus"></span><a href="ShowInsertStudent.action">
-									新增</a>
+								<span class="am-icon-plus"></span> <a href="insertDormitory.jsp">新增</a>
 							</button>
 							<button type="button" class="am-btn am-btn-default">
 								<span class="am-icon-file-excel-o"></span> 导入
@@ -64,12 +61,13 @@
 						</div>
 					</div>
 				</div>
-				<form action="QueryStudent" method="post">
+				<form action="QueryDormitory" method="post">
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-form-group">
 							<select name="method" data-am-selected="{btnSize: 'sm'}">
-								<option value="1">按姓名查询</option>
-								<option value="2">按学号查询</option>
+								<option value="1">按寝室号查询</option>
+								<option value="2">按寝室长姓名查询</option>
+								<option value="3">按寝室长学号查询</option>
 							</select>
 						</div>
 					</div>
@@ -89,39 +87,36 @@
 					<table class="am-table am-table-striped am-table-hover table-main">
 						<thead>
 							<tr>
-								<th width="20%">学号</th>
-								<th width="20%">姓名</th>
-								<th width="20%">性别</th>
-								<th width="20%">班级</th>
-								<th width="20%">操作</th>
+								<th width="25%">寝室</th>
+								<th width="25%">寝室长</th>
+								<th width="25%">寝室长学号</th>
+								<th width="25%">操作</th>
 							</tr>
 						</thead>
 						<tbody>
-
-							<s:iterator value="pageBean.list">
+							<s:iterator value="list" id="dormitory">
 								<tr>
-									<!--<td><s:property value="#student.id" /></td>
-										<td><s:property value="#student.name" /></td>
-										<td><s:property value="#student.sex" /></td>
-										<td><s:property value="#student.classesName" /></td>-->
-									<td><s:property value="id" /></td>
-									<td><s:property value="name" /></td>
-									<td><s:property value="sex" /></td>
-									<td><s:property value="classesName" /></td>
+									<td><s:property value="#dormitory.name" /></td>
+									<td><s:property value="#dormitory.leaderName" /></td>
+									<td><s:property value="#dormitory.leaderId" /></td>
 									<td>
-										<form class="am-form" onsubmit="return deleteStudent();"
-											action="DeleteStudent?id=<s:property value="id" />&page=1"
+										<form class="am-form" onsubmit="return deleteDormitory();"
+											action="DeleteDormitory?id=<s:property value="#dormitory.id" />"
 											method="post">
 											<div class="am-btn-toolbar">
 												<div class="am-btn-group am-btn-group-xs">
 													<a
 														class="am-btn am-btn-default am-btn-xs am-text-secondary"
-														href="ShowUpdateStudent?id=<s:property value="id" />"><span
+														href="ShowUpdateDormitory?id=<s:property value="#dormitory.id" />"><span
 														class="am-icon-pencil-square-o"></span>编辑</a>
 													<button type="submit"
 														class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
 														<span class="am-icon-trash-o"></span> 删除
 													</button>
+													<a class="am-btn am-btn-default am-btn-xs am-text-warning"
+														href="ShowSingleDormitory?id=<s:property value="#dormitory.id" />&name=<s:property value="#dormitory.name2" />">
+														<span class="am-icon-tripadvisor"></span>查看详情
+													</a>
 												</div>
 											</div>
 										</form>
@@ -130,7 +125,7 @@
 							</s:iterator>
 						</tbody>
 					</table>
-					<div class="am-cf">
+						<div class="am-cf">
 						共
 						<s:property value="pageBean.allRow" />
 						条记录
@@ -138,23 +133,23 @@
 							<ul class="am-pagination">
 								<s:if test="%{pageBean.currentPage == 1}">
 									<li class="am-disabled"><a href="#">«</a></li>
-									<li class="am-active"><a href="ShowAllStudent?page=1"><s:property
+									<li class="am-active"><a href="ShowAllDormitory?page=1"><s:property
 												value="pageBean.currentPage" /></a></li>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+1}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+1}"/>"><s:property
 												value="%{pageBean.currentPage+1}" /></a></li>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+2}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+2}"/>"><s:property
 												value="%{pageBean.currentPage+2}" /></a></li>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+3}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+3}"/>"><s:property
 												value="%{pageBean.currentPage+3}" /></a></li>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+4}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+4}"/>"><s:property
 												value="%{pageBean.currentPage+4}" /></a></li>
 									<s:if test="%{pageBean.currentPage!= pageBean.totalPage}">
 										<li><a
-											href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+1}"/>">»</a></li>
+											href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+1}"/>">»</a></li>
 									</s:if>
 									<s:else>
 										<li class="am-disabled"><a href="#">»</a></li>
@@ -162,24 +157,24 @@
 								</s:if>
 								<s:else>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage-1}"/>">«</a></li>
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage-1}"/>">«</a></li>
 									<li><li class="am-active"><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage}"/>"><s:property
 												value="pageBean.currentPage" /></a></li>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+1}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+1}"/>"><s:property
 												value="%{pageBean.currentPage+1}" /></a></li>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+2}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+2}"/>"><s:property
 												value="%{pageBean.currentPage+2}" /></a></li>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+3}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+3}"/>"><s:property
 												value="%{pageBean.currentPage+3}" /></a></li>
 									<li><a
-										href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+4}"/>"><s:property
+										href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+4}"/>"><s:property
 												value="%{pageBean.currentPage+4}" /></a></li>
 									<s:if test="%{pageBean.currentPage!= pageBean.totalPage}">
-										<li><a href="ShowAllStudent?page=<s:property value="%{pageBean.currentPage+1}"/>">»</a></li>
+										<li><a href="ShowAllDormitory?page=<s:property value="%{pageBean.currentPage+1}"/>">»</a></li>
 									</s:if>
 									<s:else>
 										<li class="am-disabled"><a href="#">»</a></li>
@@ -187,6 +182,8 @@
 								</s:else>
 							</ul>
 						</div>
+					</div>
+
 					</div>
 					<hr />
 					</form>

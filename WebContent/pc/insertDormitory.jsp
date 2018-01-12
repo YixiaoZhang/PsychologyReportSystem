@@ -3,11 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>添加学生信息</title>
-<meta name="description" content="这是一个添加学生页面">
+<title>新增寝室</title>
+<meta name="description" content="这是一个新增寝室页面">
 <meta name="keywords" content="form">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -30,51 +29,27 @@
 		<div class="admin-content-body">
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf">
-					<strong class="am-text-primary am-text-lg">添加学生</strong>
+					<strong class="am-text-primary am-text-lg">新增寝室</strong>
 				</div>
 			</div>
 
 			<hr>
-			<form action="InsertStudent?page=1" method="post">
+			<form action="InsertDormitory" method="post">
 				<div class="am-tabs am-margin" data-am-tabs>
 					<ul class="am-tabs-nav am-nav am-nav-tabs">
-						<li class="am-active">学生信息</a></li>
+						<li class="am-active">寝室信息</a></li>
 					</ul>
 					<div class="am-tabs-bd">
 						<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+							<div class="am-g am-margin-top"></div>
 							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">姓名</div>
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">寝室名称</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="name">
+									<input type="text" id="DormitoryName" name="DormitoryName" placeholder="如:东14#116">
 								</div>
-								<div class="am-u-sm-4 am-u-md-2 am-text-right"></div>
-							</div>
-							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">学号</div>
+								<div class="am-u-sm-4 am-u-md-2 am-text-right">寝室长学号</div>
 								<div class="am-u-sm-8 am-u-md-10">
-									<input type="text" id="classesName" name="id">
-								</div>
-								<div class="am-u-sm-4 am-u-md-2 am-text-right"></div>
-							</div>
-							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">性别</div>
-								<div class="am-u-sm-8 am-u-md-10">
-									<select name="sex" data-am-selected="{btnSize: 'sm'}">
-										<option value="1">男</option>
-										<option value="2">女</option>
-									</select>
-								</div>
-								<div class="am-u-sm-4 am-u-md-2 am-text-right"></div>
-							</div>
-							<div class="am-g am-margin-top">
-								<div class="am-u-sm-4 am-u-md-2 am-text-right">班级</div>
-								<div class="am-u-sm-8 am-u-md-10">
-									<select name="classesId" data-am-selected="{btnSize: 'sm'}">
-										<s:iterator value="classes" id="classes">
-											<option value="<s:property value="#classes.id" />"><s:property
-													value="#classes.name" /></option>
-										</s:iterator>
-									</select>
+									<input type="text" id="DormitoryLeaderId" name="DormitoryLeaderId" placeholder="如:20152681XXXX">
 								</div>
 								<div class="am-u-sm-4 am-u-md-2 am-text-right"></div>
 							</div>
@@ -86,11 +61,12 @@
 							<button type="submit" class="am-btn am-btn-primary am-btn-xs">确认</button>
 						</div>
 					</div>
-				</div>
+					</div>
 			</form>
 			<footer class="admin-content-footer">
 			<hr>
-			<p class="am-padding-left">© JavaEE大型实验</p>
+			<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed
+				under MIT license.</p>
 			</footer>
 		</div>
 		<!-- content end -->

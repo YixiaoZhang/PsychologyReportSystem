@@ -23,7 +23,7 @@ public class ShowAllRecord extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		List<ReportShow> reportresult= reportdao.queryReportbyReportId(Integer.parseInt(id));	
-		System.out.println(reportresult.get(2).getStudentId());
+	 //System.out.println(reportresult.get(2).getStudentId());
 			
 		ActionContext context = ActionContext.getContext();
 		context.put("reportresult",reportresult);		

@@ -58,40 +58,60 @@
 			<result type="chain">ShowAllClasses</result>
 		</action>
 		<action name="DeleteClasses" class="com.action.pc.grade.classes.DeleteClasses">
-			<result type="chain">ShowAllClasses</result>			
+			<result type="chain">ShowAllClasses</result>
 		</action>
 		<action name="ShowUpdateClasses" class="com.action.pc.grade.classes.ShowUpdateClasses">
-			<result>update_classes.jsp</result>			
+			<result>update_classes.jsp</result>
 		</action>
 		<action name="UpdateClasses" class="com.action.pc.grade.classes.UpdateClasses">
-			<result type="chain">ShowAllClasses</result>			
+			<result type="chain">ShowAllClasses</result>
 		</action>
+
 		<action name="ShowAllDormitory" class="com.action.pc.grade.dormitory.ShowAllDormitory">
-			<result>admin_dormitory.jsp</result>
+			<result>dormitory_page.jsp</result>
 		</action>
 		<action name="UpdateDormitory" class="com.action.pc.grade.dormitory.UpdateDormitory">
-			<result type="chain">ShowAllDormitory</result>	
+			<result type="redirectAction">
+				<param name="actionName">pc/ShowAllDormitory</param>
+				<param name="page">${page}</param>
+				<param name="result2">${result2}</param>
+			</result>
 		</action>
 		<action name="DeleteDormitory" class="com.action.pc.grade.dormitory.DeleteDormitory">
-			<result type="chain">ShowAllDormitory</result>		
-		</action>	
+			<result type="redirectAction">
+				<param name="actionName">pc/ShowAllDormitory</param>
+				<param name="page">${page}</param>
+				<param name="result1">${result1}</param>
+			</result>
+		</action>
 		<action name="QueryDormitory" class="com.action.pc.grade.dormitory.QueryDormitory">
-			<result>admin_dormitory.jsp</result>		
-		</action>	
-		<action name="ShowSingleDormitory" class="com.action.pc.grade.dormitory.ShowSingleDormitory">
-			<result>single_dormitory.jsp</result>		
-		</action>	
-		<action name="ShowUpdateDormitory" class="com.action.pc.grade.dormitory.ShowUpdateDormitory">
-			<result>update_dormitory.jsp</result>		
+			<result>admin_dormitory.jsp</result>
 		</action>
-		<action name="ShowUpdateSingleDormitory" class="com.action.pc.grade.dormitory.ShowUpdateSingleDormitory">
-			<result>update_singledormitory.jsp</result>		
+		<action name="ShowSingleDormitory"
+			class="com.action.pc.grade.dormitory.ShowSingleDormitory">
+			<result>single_dormitory.jsp</result>
 		</action>
-		<action name="UpdateSingleDormitory" class="com.action.pc.grade.dormitory.UpdateSingleDormitory">
-			<result type="chain">ShowSingleDormitory</result>					
+		<action name="ShowUpdateDormitory"
+			class="com.action.pc.grade.dormitory.ShowUpdateDormitory">
+			<result>update_dormitory.jsp</result>
 		</action>
-		
-		
+		<action name="ShowUpdateSingleDormitory"
+			class="com.action.pc.grade.dormitory.ShowUpdateSingleDormitory">
+			<result>update_singledormitory.jsp</result>
+		</action>
+		<action name="UpdateSingleDormitory"
+			class="com.action.pc.grade.dormitory.UpdateSingleDormitory">
+			<result type="chain">ShowSingleDormitory</result>
+		</action>
+		<action name="InsertDormitory" class="com.action.pc.grade.dormitory.InsertDormitory">
+			<result type="redirectAction">
+				<param name="actionName">pc/ShowAllDormitory</param>
+				<param name="page">${page}</param>
+				<param name="result">${result}</param>
+			</result>
+		</action>
+
+
 		<action name="ShowAllStudent" class="com.action.pc.grade.student.ShowAllStudent">
 			<result>admin_student.jsp</result>
 		</action>
@@ -99,18 +119,29 @@
 			<result type="chain">ShowAllStudent</result>
 		</action>
 		<action name="DeleteStudent" class="com.action.pc.grade.student.DeleteStudent">
-			<result type="chain">ShowAllStudent</result>		
+			<result type="redirectAction">
+				<param name="actionName">pc/ShowAllStudent</param>
+				<param name="page">${page}</param>
+				<param name="result1">${result1}</param>
+			</result>
 		</action>
 		<action name="QueryStudent" class="com.action.pc.grade.student.QueryStudent">
-			<result>query_student.jsp</result>		
+			<result>query_student.jsp</result>
+		</action>
+		<action name="ShowInsertStudent" class="com.action.pc.grade.student.ShowInsertStudent">
+			<result>insertStudent.jsp</result>
 		</action>
 		<action name="ShowUpdateStudent" class="com.action.pc.grade.student.ShowUpdateStudent">
-			<result>update_student.jsp</result>			
+			<result>update_student.jsp</result>
 		</action>
 		<action name="UpdateStudent" class="com.action.pc.grade.student.UpdateStudent">
-			<result type="chain">ShowAllStudent</result>		
+		<result type="redirectAction">
+			<param name="actionName">pc/ShowAllStudent</param>
+			<param name="page">${page}</param>
+			<param name="result2">${result2}</param>
+			</result>
 		</action>
-		
+
 		<action name="ShowAllReport" class="com.action.pc.report.ShowAllReport">
 			<result>admin_report.jsp</result>
 		</action>
@@ -121,7 +152,7 @@
 			<result>show_report.jsp</result>
 		</action>
 		<action name="AddReport" class="com.action.pc.report.AddReport">
-			<result>index.jsp</result>
+			<result type="chain">ShowAllReport</result>
 		</action>
 		<action name="SetOpen" class="com.action.pc.report.SetOpen">
 			<result type="chain">ShowAllReport</result>

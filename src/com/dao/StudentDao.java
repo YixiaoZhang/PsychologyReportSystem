@@ -142,13 +142,22 @@ public class StudentDao {
 		return true;
 	}
 
-	/** 删除学生(学生学号) */
-	public void deletStudent(String id) {
+	/** 删除学生(学生学号) 
+	 * @return */
+	public boolean deletStudent(String id) {
 		Session s = sessionFactory.openSession();
 		String hql = "delete from Student where id=?";
 		Query query = s.createQuery(hql);
 		query.setString(0, id);
-		query.executeUpdate();
+		try {
+			query.executeUpdate();
+			return true;
+		}catch(Exception e)
+		{
+			return false;
+		}
+		
+		
 	}
 
 	/** 修改学生 */

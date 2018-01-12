@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>管理学生</title>
-<meta name="description" content="管理学生页面">
+<title>查询学生</title>
+<meta name="description" content="查询学生页面">
 <meta name="keywords" content="table">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit">
@@ -41,7 +41,7 @@
 					<div class="am-btn-toolbar">
 						<div class="am-btn-group am-btn-group-xs">
 							<button type="button" class="am-btn am-btn-default">
-								<span class="am-icon-plus"></span><a href="insertStudent.jsp">
+								<span class="am-icon-plus"></span><a href="ShowInsertStudent.action">
 									新增</a>
 							</button>
 							<button type="button" class="am-btn am-btn-default">

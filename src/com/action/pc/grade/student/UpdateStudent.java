@@ -33,8 +33,13 @@ public class UpdateStudent extends ActionSupport {
 	public String execute() throws Exception {
 		// 学生初始密码均为123
 		System.out.println(studentId);		
+		System.out.println(classesId);
 		Student student = new Student(studentId, studentName,"123",studentSex,Integer.parseInt(classesId));
-		studentdao.updateStudent(student);
+		boolean result2=studentdao.updateStudent(student);
+		ActionContext context = ActionContext.getContext();
+		String page="1"; 
+    	context.put("page", page); 
+		context.put("result2", result2);
 		return "success";
 	}
 	/**

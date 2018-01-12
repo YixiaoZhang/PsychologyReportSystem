@@ -22,6 +22,8 @@ public class ShowAllStudent extends ActionSupport {
 	StudentDao studentdao;
 	PageBean pageBean;
 	String page;
+	String result1;//刪除
+	String result2;//更新
 	/** 分页查询 */
 	@Override
 	public String execute() throws Exception {	
@@ -72,5 +74,10 @@ public class ShowAllStudent extends ActionSupport {
 	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
-
+	public String getResult1() {
+		return result1;
+	}
+	public void setResult1(String result1) {
+		this.result1 = result1;
+	}
 }
